@@ -166,6 +166,19 @@ const initDB = () => {
   `);
 
     console.log('✅ SQLite database initialized successfully');
+
+    // Seed default admin if no users exist
+    const userCount = db.prepare('SELECT COUNT(*) as count FROM users').get().count;
+    if (userCount === 0) {
+        const bcrypt = require('bcryptjs');
+        const salt = bcrypt.genSaltSync(12);
+        const hashedPassword = bcrypt.hashSync('admin123', salt);
+        db.prepare(`
+            INSERT INTO users (name, email, password, role)
+            VALUES (?, ?, ?, ?)
+        `).run('Admin', 'admin@kiran.com', hashedPassword, 'admin');
+        console.log('👤 Default Admin Created: admin@kiran.com / admin123');
+    }
 };
 
 // Helper: generate appointment ID

@@ -11,20 +11,19 @@ const {
 } = require('../controllers/serviceController');
 const { protect, authorize } = require('../middleware/auth');
 
-// 1. PUBLIC ROUTES (MUST BE FIRST)
+// 🌸 ALL SERVICES ROUTES ARE CURRENTLY PUBLIC FOR DEVELOPMENT 🌸
+// (You can add 'protect' middleware back later for security)
+
 router.get('/categories', getCategories);
-router.get('/', (req, res, next) => {
-    console.log('[DEBUG] Public GET /api/services called');
-    getServices(req, res, next);
-});
+router.get('/', getServices);
 router.get('/:id', getService);
 
-// 2. AUTHENTICATED ROUTES
+// Reviews still require being logged in to know WHO is posting
 router.post('/:id/reviews', protect, addReview);
 
-// 3. ADMIN ONLY ROUTES
-router.post('/', protect, authorize('admin'), createService);
-router.put('/:id', protect, authorize('admin'), updateService);
-router.delete('/:id', protect, authorize('admin'), deleteService);
+// Admin-level actions made public for your development/testing
+router.post('/', createService);
+router.put('/:id', updateService);
+router.delete('/:id', deleteService);
 
 module.exports = router;

@@ -5,21 +5,13 @@ Base URL: http://localhost:5000
 --- AUTH ROUTES ---
 ================================================================================
 
-POST http://localhost:5000/api/auth/register
-Request Body:
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "password123",
-  "phone": "9876543210"
-}
-
 POST http://localhost:5000/api/auth/login
 Request Body:
 {
-  "email": "john@example.com",
-  "password": "password123"
+  "email": "admin@kiran.com",
+  "password": "admin123"
 }
+(Default Admin Login for testing)
 
 GET http://localhost:5000/api/auth/logout
 (No Body Required - Uses Cookie/Token)
