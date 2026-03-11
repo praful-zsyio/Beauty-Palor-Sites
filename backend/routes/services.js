@@ -11,15 +11,18 @@ const {
 } = require('../controllers/serviceController');
 const { protect, authorize } = require('../middleware/auth');
 
-// Public routes (No authentication required)
+// 1. PUBLIC ROUTES (MUST BE FIRST)
 router.get('/categories', getCategories);
-router.get('/', getServices);
+router.get('/', (req, res, next) => {
+    console.log('[DEBUG] Public GET /api/services called');
+    getServices(req, res, next);
+});
 router.get('/:id', getService);
 
-// Protected routes (Requires authentication)
+// 2. AUTHENTICATED ROUTES
 router.post('/:id/reviews', protect, addReview);
 
-// Admin only routes (Requires admin role)
+// 3. ADMIN ONLY ROUTES
 router.post('/', protect, authorize('admin'), createService);
 router.put('/:id', protect, authorize('admin'), updateService);
 router.delete('/:id', protect, authorize('admin'), deleteService);

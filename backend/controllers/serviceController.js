@@ -2,11 +2,13 @@ const Service = require('../models/Service');
 
 // @route GET /api/services
 exports.getServices = async (req, res, next) => {
+    console.log(`[API] GET /api/services hit at ${new Date().toISOString()}`);
     try {
         const { category, minPrice, maxPrice, search, sort, page, limit, featured, popular } = req.query;
         const result = Service.findAll({ category, minPrice, maxPrice, search, sort, page, limit, featured, popular });
         res.status(200).json({
             success: true,
+            debug: "v2-public-access-verified",
             count: result.services.length,
             total: result.total,
             totalPages: result.totalPages,

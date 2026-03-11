@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 exports.protect = async (req, res, next) => {
+    console.log(`[AUTH] Checking authorization for: ${req.method} ${req.originalUrl}`);
     let token;
 
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
