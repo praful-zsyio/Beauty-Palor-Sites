@@ -4,6 +4,8 @@
   "description": "Kiran Beauty Salon & Academy - Full Stack App",
   "private": true,
   "scripts": {
+    "start": "node backend/server.js",
+    "build": "cd backend && npm install",
     "backend": "cd backend && npm run dev",
     "frontend": "cd frontend && npm run dev",
     "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
