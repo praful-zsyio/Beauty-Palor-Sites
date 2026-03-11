@@ -126,6 +126,49 @@ export const useServiceStore = create((set) => ({
     },
 
     setFilters: (filters) => set((state) => ({ filters: { ...state.filters, ...filters } })),
+
+    createService: async (data) => {
+        set({ isLoading: true, error: null });
+        try {
+            const res = await api.post('/services', data);
+            set((state) => ({ services: [res.data.data, ...state.services], isLoading: false }));
+            return { success: true, data: res.data.data };
+        } catch (err) {
+            set({ error: err.response?.data?.message || 'Failed to create service', isLoading: false });
+            return { success: false, error: err.response?.data?.message };
+        }
+    },
+
+    updateService: async (id, data) => {
+        set({ isLoading: true, error: null });
+        try {
+            const res = await api.put(`/services/${id}`, data);
+            set((state) => ({
+                services: state.services.map((s) => (s._id === id ? res.data.data : s)),
+                service: res.data.data,
+                isLoading: false,
+            }));
+            return { success: true, data: res.data.data };
+        } catch (err) {
+            set({ error: err.response?.data?.message || 'Failed to update service', isLoading: false });
+            return { success: false, error: err.response?.data?.message };
+        }
+    },
+
+    deleteService: async (id) => {
+        set({ isLoading: true, error: null });
+        try {
+            await api.delete(`/services/${id}`);
+            set((state) => ({
+                services: state.services.filter((s) => s._id !== id),
+                isLoading: false,
+            }));
+            return { success: true };
+        } catch (err) {
+            set({ error: err.response?.data?.message || 'Failed to delete service', isLoading: false });
+            return { success: false, error: err.response?.data?.message };
+        }
+    },
 }));
 
 export const useAppointmentStore = create((set) => ({
