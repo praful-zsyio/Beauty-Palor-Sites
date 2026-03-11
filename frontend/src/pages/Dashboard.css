@@ -1,0 +1,293 @@
+.dashboard-page {
+    min-height: 100vh;
+    background: var(--cream);
+    padding-bottom: 4rem;
+}
+
+.dashboard-hero {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+}
+
+.dashboard-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 700;
+    box-shadow: 0 4px 20px rgba(244, 63, 94, 0.4);
+}
+
+.dashboard-hero-name {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    color: white;
+    margin-bottom: 0.25rem;
+}
+
+.dashboard-loyalty {
+    margin-left: auto;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.dashboard-loyalty span:first-child {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fbbf24;
+}
+
+.dashboard-loyalty span:last-child {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.05em;
+}
+
+.dash-container {
+    padding-top: 2.5rem;
+}
+
+/* Stats */
+.dash-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.dash-stat-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(244, 63, 94, 0.06);
+    box-shadow: 0 4px 16px rgba(26, 26, 46, 0.04);
+}
+
+.dash-stat-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.dash-stat-num {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--charcoal);
+}
+
+.dash-stat-label {
+    font-size: 0.8rem;
+    color: var(--slate);
+    margin-top: 0.2rem;
+}
+
+/* Tabs */
+.dash-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 2px solid rgba(244, 63, 94, 0.08);
+}
+
+.dash-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--slate);
+    transition: var(--transition-fast);
+    font-family: var(--font-body);
+    position: relative;
+}
+
+.dash-tab.active {
+    color: var(--rose-500);
+}
+
+.dash-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+}
+
+.dash-section-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    color: var(--charcoal);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 4rem;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    color: var(--slate);
+}
+
+/* Appointments List */
+.appointments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.apt-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid rgba(244, 63, 94, 0.06);
+    box-shadow: 0 4px 16px rgba(26, 26, 46, 0.04);
+    transition: var(--transition-base);
+}
+
+.apt-service-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.apt-info {
+    flex: 1;
+}
+
+.apt-service-name {
+    font-weight: 600;
+    color: var(--charcoal);
+    font-size: 0.95rem;
+    margin-bottom: 0.375rem;
+}
+
+.apt-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--slate);
+}
+
+.apt-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.apt-id {
+    font-size: 0.72rem;
+    color: var(--slate);
+    margin-top: 0.25rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+}
+
+.apt-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.apt-status {
+    padding: 3px 12px;
+    border-radius: var(--radius-full);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.apt-price {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--charcoal);
+}
+
+.btn-cancel {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: none;
+    border: 1px solid #fca5a5;
+    color: #dc2626;
+    border-radius: var(--radius-full);
+    padding: 4px 10px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    font-family: var(--font-body);
+}
+
+.btn-cancel:hover {
+    background: #fef2f2;
+}
+
+/* Profile */
+.profile-form {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    border: 1px solid rgba(244, 63, 94, 0.06);
+}
+
+.profile-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+@media (max-width: 900px) {
+    .dash-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .dash-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .apt-card {
+        flex-wrap: wrap;
+    }
+}

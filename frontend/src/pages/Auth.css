@@ -1,0 +1,138 @@
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 1rem 2rem;
+    position: relative;
+    background: linear-gradient(160deg, #1a1a2e 0%, #2d1541 60%, #1a1a2e 100%);
+}
+
+.auth-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.auth-orb {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.auth-orb-1 {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    left: -100px;
+    background: radial-gradient(circle, rgba(244, 63, 94, 0.15) 0%, transparent 70%);
+}
+
+.auth-orb-2 {
+    width: 300px;
+    height: 300px;
+    bottom: -50px;
+    right: -50px;
+    background: radial-gradient(circle, rgba(212, 168, 67, 0.1) 0%, transparent 70%);
+}
+
+.auth-card {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 460px;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.auth-card-wide {
+    max-width: 620px;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-logo-icon {
+    font-size: 2.5rem;
+    color: var(--rose-500);
+    filter: drop-shadow(0 4px 12px rgba(244, 63, 94, 0.4));
+    animation: float 4s ease-in-out infinite;
+    margin-bottom: 0.75rem;
+}
+
+.auth-title {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 0.35rem;
+}
+
+.auth-subtitle {
+    font-size: 0.875rem;
+    color: var(--slate);
+}
+
+/* Form */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.
+}
+
+.input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    color: var(--rose-400);
+    font-size: 1rem;
+    z-index: 1;
+}
+
+.input-padded {
+    padding-left: 2.75rem !important;
+}
+
+.input-eye {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--slate);
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.auth-submit {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    color: var(--slate);
+    font-size: 0.8rem;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(244, 63, 94, 0.12);
+}

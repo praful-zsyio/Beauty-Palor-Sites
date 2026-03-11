@@ -1,0 +1,36 @@
+The error `sh: 1: start: not found` occurs because the "dev" script in your root `package.json` uses `start cmd /k` which are Windows-specific commands. Render uses Linux, so these commands do not exist there.
+
+To deploy your application on Render, you should deploy the Frontend and Backend as two separate services. Here are the exact commands and settings you need for Render:
+
+---------------------------------------------------------
+1. BACKEND DEPLOYMENT (Create a "Web Service" on Render)
+---------------------------------------------------------
+• Name: beauty-salon-backend (or similar)
+• Environment: Node
+• Root Directory: backend
+• Build Command: npm install
+• Start Command: npm start
+• Auto-Deploy: Yes
+
+(Make sure to add your Environment Variables like database URLs, Stripe secrets, JWT secrets, etc. in the Render dashboard for the backend service).
+
+
+---------------------------------------------------------
+2. FRONTEND DEPLOYMENT (Create a "Static Site" on Render)
+---------------------------------------------------------
+• Name: beauty-salon-frontend (or similar)
+• Environment: Static Site
+• Root Directory: frontend
+• Build Command: npm install && npm run build
+• Publish Directory: dist
+• Auto-Deploy: Yes
+
+(If you have environment variables starting with VITE_ like VITE_API_URL, make sure to add them in the Render dashboard for the frontend service. Change your VITE_API_URL or similar backend URL in your frontend to point to the live Render backend URL).
+
+---
+
+FIXING LOCAL DEV (Optional but recommended):
+If you want to be able to run both frontend and backend on any OS (including Mac/Linux) locally with one command, you shouldn't use `start cmd`. Instead:
+1. Run this in your root folder: npm install concurrently -D
+2. Change your root package.json "dev" script to:
+   "dev": "concurrently \"npm run backend\" \"npm run frontend\""

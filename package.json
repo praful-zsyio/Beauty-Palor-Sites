@@ -1,0 +1,15 @@
+{
+  "name": "kiran-beauty-salon",
+  "version": "1.0.0",
+  "description": "Kiran Beauty Salon & Academy - Full Stack App",
+  "private": true,
+  "scripts": {
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
