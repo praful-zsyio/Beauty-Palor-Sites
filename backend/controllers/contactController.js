@@ -191,7 +191,7 @@ exports.sendContactEmail = async (req, res) => {
 
     try {
         // Send notification to salon owner
-        await resend.emails.send({
+        const ownerResponse = await resend.emails.send({
             from: `Kiran Beauty Salon <${fromAddress}>`,
             to: [ownerEmail],
             replyTo: email,
@@ -199,23 +199,36 @@ exports.sendContactEmail = async (req, res) => {
             html: ownerHtml,
         });
 
-        // Send auto-reply to visitor
-        await resend.emails.send({
+        if (ownerResponse.error) {
+            console.error('Resend Owner Email Error:', ownerResponse.error);
+            return res.status(500).json({
+                success: false,
+                message: 'Failed to send message. Please try again or call us directly.',
+                error: ownerResponse.error.message
+            });
+        }
+
+        // Send auto-reply to visitor (Might fail if using onboarding@resend.dev and visitor email is unverified, so we don't throw on this)
+        const visitorResponse = await resend.emails.send({
             from: `Kiran Beauty Salon <${fromAddress}>`,
             to: [email],
             subject: `✅ We received your message — Kiran Beauty Salon`,
             html: visitorHtml,
         });
 
-        res.status(200).json({
+        if (visitorResponse.error) {
+            console.warn('Resend Visitor Auto-Reply Error (Usually due to onboarding domain restrictions):', visitorResponse.error);
+        }
+
+        return res.status(200).json({
             success: true,
             message: 'Your message has been sent successfully! We\'ll get back to you within 24 hours. 🌸',
         });
     } catch (err) {
-        console.error('Resend error:', err);
-        res.status(500).json({
+        console.error('Server error sending email:', err);
+        return res.status(500).json({
             success: false,
-            message: 'Failed to send email. Please try again or call us directly.',
+            message: 'An unexpected error occurred while sending the email.',
             error: process.env.NODE_ENV === 'development' ? err.message : undefined,
         });
     }

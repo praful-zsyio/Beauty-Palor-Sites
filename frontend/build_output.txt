@@ -1,0 +1,52 @@
+﻿
+> frontend@0.0.0 build
+> vite build
+
+[36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+transforming...
+node.exe : Found 1 warning while optimizing generated CSS:
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Found 1 warning... generated CSS::String) [], RemoteExc 
+   eption
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+[2mΓöé   }[22m
+[2mΓöé }[22m
+[2mΓöé[22m @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0
+,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:it
+al,wght@0,300;0,400;0,600;1,400&display=swap');
+[2mΓöå[22m        [33m[2m^--[22m @import rules must precede all rules aside from @charset and 
+@layer statements[39m
+[2mΓöå[22m
+[2mΓöé :root {[22m
+[2mΓöé   --rose-50: #fff1f2;[22m
+
+[32mΓ£ô[39m 70 modules transformed.
+[31mΓ£ù[39m Build failed in 2.64s
+[31merror during build:
+[31m[@tailwindcss/vite:generate:build] Cannot apply utility class `md:grid-cols-2` because the `md` 
+variant does not exist.[31m
+file: [36mD:/Ksolve/Beauty Pallor Sites/frontend/src/pages/Contact.css[31m
+    at onInvalidCandidate (file:///D:/Ksolve/Beauty%20Pallor%20Sites/frontend/node_modules/tailwindcs
+s/dist/chunk-L5IEUH3R.mjs:21:988)
+    at $e (file:///D:/Ksolve/Beauty%20Pallor%20Sites/frontend/node_modules/tailwindcss/dist/chunk-L5I
+EUH3R.mjs:16:36740)
+    at file:///D:/Ksolve/Beauty%20Pallor%20Sites/frontend/node_modules/tailwindcss/dist/chunk-L5IEUH3
+R.mjs:21:355
+    at Ar (file:///D:/Ksolve/Beauty%20Pallor%20Sites/frontend/node_modules/tailwindcss/dist/chunk-L5I
+EUH3R.mjs:3:1733)
+    at I (file:///D:/Ksolve/Beauty%20Pallor%20Sites/frontend/node_modules/tailwindcss/dist/chunk-L5IE
+UH3R.mjs:3:1377)
+    at Ce (file:///D:/Ksolve/Beauty%20Pallor%20Sites/frontend/node_modules/tailwindcss/dist/chunk-L5I
+EUH3R.mjs:21:172)
+    at Gi (file:///D:/Ksolve/Beauty%20Pallor%20Sites/frontend/node_modules/tailwindcss/dist/chunk-L5I
+EUH3R.mjs:38:294)
+    at async ao (file:///D:/Ksolve/Beauty%20Pallor%20Sites/frontend/node_modules/tailwindcss/dist/chu
+nk-L5IEUH3R.mjs:38:631)
+    at async vf (file:///D:/Ksolve/Beauty%20Pallor%20Sites/frontend/node_modules/tailwindcss/dist/chu
+nk-L5IEUH3R.mjs:38:1406)
+    at async uu (file:///D:/Ksolve/Beauty%20Pallor%20Sites/frontend/node_modules/@tailwindcss/node/di
+st/index.mjs:10:3458)[39m
