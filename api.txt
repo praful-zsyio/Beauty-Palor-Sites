@@ -1,0 +1,41 @@
+🌸 Kiran Beauty Salon & Academy - API Endpoints (Localhost)
+Base URL: http://localhost:5000
+
+--- AUTH ROUTES ---
+POST   http://localhost:5000/api/auth/register             (Public)
+POST   http://localhost:5000/api/auth/login                (Public)
+GET    http://localhost:5000/api/auth/logout               (Protected)
+GET    http://localhost:5000/api/auth/me                   (Protected)
+PUT    http://localhost:5000/api/auth/updateprofile        (Protected)
+PUT    http://localhost:5000/api/auth/updatepassword       (Protected)
+
+--- SERVICES ROUTES ---
+GET    http://localhost:5000/api/services                  (Public)
+GET    http://localhost:5000/api/services/categories       (Public)
+GET    http://localhost:5000/api/services/:id              (Public)
+POST   http://localhost:5000/api/services/:id/reviews      (Protected)
+POST   http://localhost:5000/api/services                  (Admin)
+PUT    http://localhost:5000/api/services/:id             (Admin)
+DELETE http://localhost:5000/api/services/:id             (Admin)
+
+--- APPOINTMENT ROUTES ---
+GET    http://localhost:5000/api/appointments/slots        (Public)
+POST   http://localhost:5000/api/appointments              (Protected)
+GET    http://localhost:5000/api/appointments/my           (Protected)
+GET    http://localhost:5000/api/appointments/:id          (Protected)
+PUT    http://localhost:5000/api/appointments/:id/cancel   (Protected)
+GET    http://localhost:5000/api/appointments/admin/all    (Admin/Staff)
+PUT    http://localhost:5000/api/appointments/:id/status   (Admin/Staff)
+
+--- CONTACT ROUTES ---
+POST   http://localhost:5000/api/contact                   (Public)
+GET    http://localhost:5000/api/contact/list              (Admin)
+GET    http://localhost:5000/api/contact/:id               (Admin)
+PUT    http://localhost:5000/api/contact/:id               (Admin)
+DELETE http://localhost:5000/api/contact/:id               (Admin)
+POST   http://localhost:5000/api/contact/batch             (Admin)
+GET    http://localhost:5000/api/contact/:emailId/attachments           (Admin)
+GET    http://localhost:5000/api/contact/:emailId/attachments/:id       (Admin)
+
+--- SYSTEM ---
+GET    http://localhost:5000/api/health                    (Public)

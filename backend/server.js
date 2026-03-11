@@ -20,6 +20,10 @@ const app = express();
 // Security
 app.use(helmet());
 app.use(morgan('dev'));
+app.use((req, res, next) => {
+    console.log(`>>> Incoming Request: ${req.method} ${req.originalUrl}`);
+    next();
+});
 
 // Rate limiting
 const limiter = rateLimit({
@@ -52,6 +56,10 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/services', require('./routes/services'));
 app.use('/api/appointments', require('./routes/appointments'));
 app.use('/api/contact', require('./routes/contact'));
+
+app.get('/api/test-public', (req, res) => {
+    res.status(200).json({ success: true, message: 'This API is 100% public and should never show authorization errors.' });
+});
 
 // Health check
 app.get('/api/health', (req, res) => {

@@ -1,0 +1,240 @@
+🌸 Kiran Beauty Salon & Academy - API JSON Examples
+Base URL: http://localhost:5000
+
+================================================================================
+--- AUTH ROUTES ---
+================================================================================
+
+POST http://localhost:5000/api/auth/register
+Request Body:
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123",
+  "phone": "9876543210"
+}
+
+POST http://localhost:5000/api/auth/login
+Request Body:
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+GET http://localhost:5000/api/auth/logout
+(No Body Required - Uses Cookie/Token)
+
+GET http://localhost:5000/api/auth/me
+(No Body Required - Uses Token)
+Response Example:
+{
+  "success": true,
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "role": "customer"
+  }
+}
+
+PUT http://localhost:5000/api/auth/updateprofile
+Request Body:
+{
+  "name": "John Updated",
+  "phone": "1234567890",
+  "email": "john.updated@example.com"
+}
+
+PUT http://localhost:5000/api/auth/updatepassword
+Request Body:
+{
+  "currentPassword": "password123",
+  "newPassword": "newsecurepassword456"
+}
+
+
+================================================================================
+--- SERVICES ROUTES ---
+================================================================================
+
+GET http://localhost:5000/api/services
+(Query Params: category, minPrice, maxPrice, search, sort, page, limit)
+Response Example:
+{
+  "success": true,
+  "count": 1,
+  "data": [
+    {
+      "id": 1,
+      "name": "Hair Cut & Styling",
+      "price": 500,
+      "category": "Hair"
+    }
+  ]
+}
+
+GET http://localhost:5000/api/services/categories
+Response Example:
+{
+  "success": true,
+  "data": [
+    { "_id": "Hair", "count": 10 },
+    { "_id": "Skin", "count": 5 }
+  ]
+}
+
+GET http://localhost:5000/api/services/:id
+Response Example:
+{
+  "success": true,
+  "data": {
+    "id": 1,
+    "name": "Bridal Makeup",
+    "description": "Professional bridal look...",
+    "price": 5000
+  }
+}
+
+POST http://localhost:5000/api/services/:id/reviews
+Request Body:
+{
+  "rating": 5,
+  "comment": "Exceptional service, highly recommend!"
+}
+
+POST http://localhost:5000/api/services
+Request Body (Admin Only):
+{
+  "name": "Gold Facial",
+  "description": "Premium 24k gold leaf skin rejuvenation.",
+  "short_description": "Revitalizing Gold Glow",
+  "category": "Skin",
+  "price": 2500,
+  "discounted_price": 2200,
+  "duration": 90,
+  "thumbnail": "https://images.unsplash.com/photo-1512290923902-8a9f81dc2069",
+  "features": ["Deep Cleansing", "Gold Foil Mask", "Cooling Therapy"],
+  "includes": ["Free Face Massage"],
+  "tags": ["facial", "premium", "glow"],
+  "is_featured": true,
+  "is_popular": true,
+  "sort_order": 0
+}
+
+PUT http://localhost:5000/api/services/:id
+Request Body (Admin Only):
+{
+  "price": 2600,
+  "is_active": 1
+}
+
+DELETE http://localhost:5000/api/services/:id
+(No Body Required - Admin Only)
+
+
+================================================================================
+--- APPOINTMENT ROUTES ---
+================================================================================
+
+GET http://localhost:5000/api/appointments/slots?date=2024-03-20&serviceId=1
+Response Example:
+{
+  "success": true,
+  "data": ["10:00 AM", "11:00 AM", "02:00 PM"]
+}
+
+POST http://localhost:5000/api/appointments
+Request Body:
+{
+  "serviceId": 1,
+  "date": "2024-03-25",
+  "timeSlot": "11:00 AM",
+  "customerName": "John Doe",
+  "customerEmail": "john@example.com",
+  "customerPhone": "9876543210",
+  "notes": "Looking forward to it!",
+  "paymentMethod": "cash"
+}
+
+GET http://localhost:5000/api/appointments/my
+(No Body Required)
+
+GET http://localhost:5000/api/appointments/:id
+(No Body Required)
+
+PUT http://localhost:5000/api/appointments/:id/cancel
+Request Body:
+{
+  "reason": "Personal emergency"
+}
+
+GET http://localhost:5000/api/appointments/admin/all
+(Admin/Staff Only)
+
+PUT http://localhost:5000/api/appointments/:id/status
+Request Body (Admin/Staff Only):
+{
+  "status": "confirmed"
+}
+
+
+================================================================================
+--- CONTACT ROUTES ---
+================================================================================
+
+POST http://localhost:5000/api/contact
+Request Body:
+{
+  "name": "Sarah Connor",
+  "email": "sarah@example.com",
+  "phone": "9876543211",
+  "subject": "Booking Enquiry",
+  "message": "Do you have any discounts for group bookings?"
+}
+
+GET http://localhost:5000/api/contact/list
+(Admin Only)
+
+GET http://localhost:5000/api/contact/:id
+(Admin Only)
+
+PUT http://localhost:5000/api/contact/:id
+Request Body (Admin Only - Resend Scheduling):
+{
+  "scheduledAt": "2024-03-21T10:00:00Z"
+}
+
+DELETE http://localhost:5000/api/contact/:id
+(Admin Only - Cancel Resend Email)
+
+POST http://localhost:5000/api/contact/batch
+Request Body (Admin Only):
+{
+  "emails": [
+    {
+      "from": "Kiran Salon <onboarding@resend.dev>",
+      "to": ["client@example.com"],
+      "subject": "Hello",
+      "html": "<strong>Welcome!</strong>"
+    }
+  ]
+}
+
+GET http://localhost:5000/api/contact/:emailId/attachments
+(Admin Only)
+
+GET http://localhost:5000/api/contact/:emailId/attachments/:id
+(Admin Only)
+
+
+================================================================================
+--- SYSTEM ---
+================================================================================
+
+GET http://localhost:5000/api/health
+Response Example:
+{
+  "success": true,
+  "message": "🌸 Kiran Beauty Salon API is running!",
+  "version": "1.0.0"
+}

@@ -1,0 +1,122 @@
+{
+  "auth": {
+    "register": {
+      "endpoint": "POST /api/auth/register",
+      "body": {
+        "name": "John Doe",
+        "email": "john@example.com",
+        "password": "password123",
+        "phone": "9876543210"
+      }
+    },
+    "login": {
+      "endpoint": "POST /api/auth/login",
+      "body": {
+        "email": "john@example.com",
+        "password": "password123"
+      }
+    },
+    "updateProfile": {
+      "endpoint": "PUT /api/auth/updateprofile",
+      "body": {
+        "name": "John Updated",
+        "phone": "1234567890"
+      }
+    },
+    "updatePassword": {
+      "endpoint": "PUT /api/auth/updatepassword",
+      "body": {
+        "currentPassword": "password123",
+        "newPassword": "newpassword456"
+      }
+    }
+  },
+  "services": {
+    "create": {
+      "endpoint": "POST /api/services",
+      "body": {
+        "name": "Luxury Facial",
+        "description": "Deep cleansing and hydration facial treatment.",
+        "short_description": "Cleansing & Hydration",
+        "category": "Skin",
+        "price": 1500,
+        "discounted_price": 1200,
+        "duration": 60,
+        "thumbnail": "https://example.com/facial.jpg",
+        "features": ["Deep Cleansing", "Steaming", "Mask"],
+        "includes": ["Free Face Massage"],
+        "tags": ["facial", "glow", "skincare"],
+        "is_featured": true,
+        "is_popular": false,
+        "sort_order": 1
+      }
+    },
+    "update": {
+      "endpoint": "PUT /api/services/:id",
+      "body": {
+        "price": 1600,
+        "is_featured": false
+      }
+    },
+    "addReview": {
+      "endpoint": "POST /api/services/:id/reviews",
+      "body": {
+        "rating": 5,
+        "comment": "Amazing experience! My skin feels great."
+      }
+    }
+  },
+  "appointments": {
+    "book": {
+      "endpoint": "POST /api/appointments",
+      "body": {
+        "serviceId": 1,
+        "date": "2024-03-20",
+        "timeSlot": "10:00 AM",
+        "customerName": "John Doe",
+        "customerEmail": "john@example.com",
+        "customerPhone": "9876543210",
+        "notes": "Please be on time.",
+        "specialRequests": "Sensitive skin treatment",
+        "paymentMethod": "cash"
+      }
+    },
+    "cancel": {
+      "endpoint": "PUT /api/appointments/:id/cancel",
+      "body": {
+        "reason": "Change of plans"
+      }
+    },
+    "updateStatus": {
+      "endpoint": "PUT /api/appointments/:id/status",
+      "body": {
+        "status": "confirmed"
+      }
+    }
+  },
+  "contact": {
+    "send": {
+      "endpoint": "POST /api/contact",
+      "body": {
+        "name": "Jane Smith",
+        "email": "jane@example.com",
+        "phone": "9988776655",
+        "subject": "Academy Admission",
+        "message": "I am interested in the bridal makeup course. Please share details."
+      }
+    },
+    "batchSend": {
+      "endpoint": "POST /api/contact/batch",
+      "body": {
+        "emails": [
+          {
+            "from": "Kiran Beauty Salon <onboarding@resend.dev>",
+            "to": ["client1@example.com"],
+            "subject": "Special Offer",
+            "html": "<p>20% off on all services!</p>"
+          }
+        ]
+      }
+    }
+  }
+}

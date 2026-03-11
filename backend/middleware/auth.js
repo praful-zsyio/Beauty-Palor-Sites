@@ -2,17 +2,26 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 exports.protect = async (req, res, next) => {
-    console.log(`[AUTH] Checking authorization for: ${req.method} ${req.originalUrl}`);
+    console.log(`[AUTH] Path: ${req.originalUrl}`);
+    console.log(`[AUTH] Auth Header: ${req.headers.authorization ? 'Present' : 'Missing'}`);
+    
     let token;
 
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         token = req.headers.authorization.split(' ')[1];
+        console.log(`[AUTH] Token extracted from Header`);
     } else if (req.cookies && req.cookies.token) {
         token = req.cookies.token;
+        console.log(`[AUTH] Token extracted from Cookie`);
     }
 
     if (!token) {
-        return res.status(401).json({ success: false, message: 'Not authorized to access this route' });
+        console.error(`[AUTH ERROR] No token found for ${req.method} ${req.originalUrl}`);
+        return res.status(401).json({ 
+            success: false, 
+            message: `Not authorized to access this route: ${req.method} ${req.originalUrl}`,
+            tip: "Ensure you are sending 'Authorization: Bearer <your_token>' header"
+        });
     }
 
     try {
