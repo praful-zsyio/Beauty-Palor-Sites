@@ -1,0 +1,60 @@
+# Deployment Steps
+
+This guide covers how to deploy the **Frontend** of this project to **Vercel** and the **Backend** to **Render**.
+
+---
+
+## 1. Backend Deployment (Render)
+
+We will deploy the Node.js API to Render.com. 
+
+### Steps:
+1. **Push your code** to your GitHub repository (`main` branch).
+2. Create an account and log in at [Render.com](https://render.com/).
+3. Click on **New +** and select **Web Service**.
+4. Choose **Build and deploy from a Git repository** and connect your GitHub account.
+5. Select the `Beauty-Palor-Sites` repository.
+6. Configure the Web Service:
+   - **Name:** `beauty-pallor-api`
+   - **Region:** Ohio (or an area closest to you)
+   - **Branch:** `main`
+   - **Root Directory:** `backend` (Important!)
+   - **Runtime:** `Node`
+   - **Build Command:** `npm install`
+   - **Start Command:** `npm start` (or `node server.js`)
+7. **Environment Variables**: Add your API environment variables (from your `.env`):
+   - `PORT` = `5000`
+   - `NODE_ENV` = `production`
+   - `JWT_SECRET` = `<your_secret_key>`
+   - `CLIENT_URL` = `<your_vercel_frontend_url>` (You can add this after deploying Vercel!)
+   - `RESEND_API_KEY` = `<your_email_api_key>`
+8. Click **Create Web Service**. 
+9. Render will install dependencies and start your app. Once deployed, copy your Render URL (e.g., `https://beauty-pallor-api.onrender.com`).
+
+> **Important Note about SQLite on Render Free Tier:**
+> Render's free tier spins down after inactivity and uses an Ephemeral Disk. This means your SQLite database will reset to empty every time the server restarts. To keep data permanently on Render, you must upgrade your Render plan and attach a Persistent Disk to your `/data` folder, or migrate to PostgreSQL/MongoDB.
+
+---
+
+## 2. Frontend Deployment (Vercel)
+
+We will deploy the React (Vite) frontend to Vercel.com.
+
+### Steps:
+1. Create an account and log in at [Vercel.com](https://vercel.com/).
+2. Click **Add New Project**.
+3. Import your GitHub repository (`Beauty-Palor-Sites`).
+4. Configure the Project:
+   - **Project Name:** `beauty-pallor-frontend`
+   - **Framework Preset:** `Vite`
+   - **Root Directory:** `frontend` (Important!)
+   - **Build Command:** `npm run build`
+   - **Output Directory:** `dist`
+5. **Environment Variables**:
+   Under the environment variables section, add the URL to your Render backend API so your React app knows where to fetch data.
+   - `VITE_API_URL` = `https://beauty-pallor-api.onrender.com/api` (Replace with your actual Render URL)
+6. Click **Deploy**.
+7. Vercel will build and deploy your React app. It will provide a live URL (e.g., `https://beauty-pallor.vercel.app`).
+8. **Final Step:** Don't forget to take your new Vercel URL and add it to the `CLIENT_URL` environment variable inside your Render Backend to avoid CORS errors!
+
+🎉 Your full-stack application is now deployed!
