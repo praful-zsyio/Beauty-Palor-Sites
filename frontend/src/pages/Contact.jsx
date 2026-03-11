@@ -1,14 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiMapPin, FiPhone, FiMail, FiClock, FiSend } from 'react-icons/fi';
 import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
-import { api } from '../store';
+import { api, useAuthStore } from '../store';
 import './Contact.css';
 
 export default function Contact() {
+    const { user } = useAuthStore();
     const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
     const [sending, setSending] = useState(false);
+
+    useEffect(() => {
+        if (user) {
+            setForm(prev => ({
+                ...prev,
+                name: user.name || prev.name,
+                email: user.email || prev.email,
+                phone: user.phone || prev.phone
+            }));
+        }
+    }, [user]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
