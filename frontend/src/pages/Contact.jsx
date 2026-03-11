@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FiMapPin, FiPhone, FiMail, FiClock, FiSend } from 'react-icons/fi';
 import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
-import axios from 'axios';
+import { api } from '../store';
 import './Contact.css';
 
 export default function Contact() {
@@ -14,7 +14,7 @@ export default function Contact() {
         e.preventDefault();
         setSending(true);
         try {
-            const res = await axios.post('/api/contact', form);
+            const res = await api.post('/contact', form);
             toast.success(res.data.message || 'Message sent! We\'ll get back to you soon. 🌸');
             setForm({ name: '', email: '', phone: '', subject: '', message: '' });
         } catch (err) {

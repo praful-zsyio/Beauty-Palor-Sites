@@ -36,7 +36,9 @@ app.use(cookieParser());
 
 // CORS
 app.use(cors({
-    origin: [process.env.CLIENT_URL || 'http://localhost:5173', 'http://localhost:3000'],
+    origin: function (origin, callback) {
+        callback(null, true);
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
