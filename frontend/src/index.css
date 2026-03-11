@@ -1,3 +1,4 @@
+@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap');
 
 /* ===== DESIGN TOKENS ===== */
@@ -270,10 +271,10 @@ h5, h6 { font-family: var(--font-body); line-height: 1.4; }
 .section-sm { padding: var(--space-16) 0; }
 
 /* ===== GRID ===== */
-.grid { display: grid; }
-.grid-2 { grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
-.grid-3 { grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
-.grid-4 { grid-template-columns: repeat(4, 1fr); gap: var(--space-6); }
+.grid { @apply grid; }
+.grid-2 { @apply grid grid-cols-1 md:grid-cols-2 gap-6; }
+.grid-3 { @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6; }
+.grid-4 { @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6; }
 
 /* ===== BADGE ===== */
 .badge {
@@ -364,13 +365,8 @@ h5, h6 { font-family: var(--font-body); line-height: 1.4; }
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 1024px) {
-  .grid-4 { grid-template-columns: repeat(2, 1fr); }
-}
-
 @media (max-width: 768px) {
   .container { padding: 0 var(--space-4); }
   .section { padding: var(--space-16) 0; }
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .btn-lg { padding: 0.875rem 1.75rem; }
 }

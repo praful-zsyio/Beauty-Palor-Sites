@@ -1,8 +1,5 @@
 .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 3.5rem;
-    align-items: start;
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1.2fr] gap-8 md:gap-14 items-start;
 }
 
 .contact-info-cards {
@@ -67,11 +64,4 @@
     font-size: 1.4rem;
     color: var(--charcoal);
     margin-bottom: 1.75rem;
-}
-
-@media (max-width: 900px) {
-    .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
 }
