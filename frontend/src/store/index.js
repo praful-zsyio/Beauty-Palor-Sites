@@ -190,4 +190,96 @@ export const useAppointmentStore = create((set) => ({
     },
 }));
 
+export const useContactStore = create((set) => ({
+    isLoading: false,
+    error: null,
+    emails: [],
+    emailDetails: null,
+    attachments: [],
+
+    sendBatchEmails: async (emails) => {
+        set({ isLoading: true, error: null });
+        try {
+            const res = await api.post('/contact/batch', { emails });
+            set({ isLoading: false });
+            return { success: true, data: res.data.data };
+        } catch (err) {
+            set({ error: err.response?.data?.message || 'Failed to send batch emails', isLoading: false });
+            return { success: false, error: err.response?.data?.message };
+        }
+    },
+
+    listEmails: async () => {
+        set({ isLoading: true, error: null });
+        try {
+            const res = await api.get('/contact/list');
+            set({ emails: res.data.data.data || [], isLoading: false }); // resend list payload
+            return { success: true, data: res.data.data };
+        } catch (err) {
+            set({ error: err.response?.data?.message || 'Failed to list emails', isLoading: false });
+            return { success: false, error: err.response?.data?.message };
+        }
+    },
+
+    retrieveEmail: async (id) => {
+        set({ isLoading: true, error: null });
+        try {
+            const res = await api.get(`/contact/${id}`);
+            set({ emailDetails: res.data.data, isLoading: false });
+            return { success: true, data: res.data.data };
+        } catch (err) {
+            set({ error: err.response?.data?.message || 'Failed to retrieve email', isLoading: false });
+            return { success: false, error: err.response?.data?.message };
+        }
+    },
+
+    updateEmail: async (id, scheduledAt) => {
+        set({ isLoading: true, error: null });
+        try {
+            const res = await api.put(`/contact/${id}`, { scheduledAt });
+            set({ isLoading: false });
+            return { success: true, data: res.data.data };
+        } catch (err) {
+            set({ error: err.response?.data?.message || 'Failed to update email', isLoading: false });
+            return { success: false, error: err.response?.data?.message };
+        }
+    },
+
+    cancelEmail: async (id) => {
+        set({ isLoading: true, error: null });
+        try {
+            const res = await api.delete(`/contact/${id}`);
+            set({ isLoading: false });
+            return { success: true, data: res.data.data };
+        } catch (err) {
+            set({ error: err.response?.data?.message || 'Failed to cancel email', isLoading: false });
+            return { success: false, error: err.response?.data?.message };
+        }
+    },
+
+    listAttachments: async (emailId) => {
+        set({ isLoading: true, error: null });
+        try {
+            const res = await api.get(`/contact/${emailId}/attachments`);
+            set({ attachments: res.data.data.data || [], isLoading: false });
+            return { success: true, data: res.data.data };
+        } catch (err) {
+            set({ error: err.response?.data?.message || 'Failed to list attachments', isLoading: false });
+            return { success: false, error: err.response?.data?.message };
+        }
+    },
+
+    retrieveAttachment: async (emailId, id) => {
+        set({ isLoading: true, error: null });
+        try {
+            const res = await api.get(`/contact/${emailId}/attachments/${id}`);
+            set({ isLoading: false });
+            return { success: true, data: res.data.data };
+        } catch (err) {
+            set({ error: err.response?.data?.message || 'Failed to retrieve attachment', isLoading: false });
+            return { success: false, error: err.response?.data?.message };
+        }
+    }
+}));
+
 export { api };

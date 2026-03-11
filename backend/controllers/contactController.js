@@ -220,3 +220,93 @@ exports.sendContactEmail = async (req, res) => {
         });
     }
 };
+
+// @desc    Send batch emails
+// @route   POST /api/contact/batch
+// @access  Private/Admin
+exports.sendBatchEmails = async (req, res) => {
+    try {
+        const { emails } = req.body; // Array of email objects
+        const data = await resend.batch.send(emails);
+        res.status(200).json({ success: true, data });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+};
+
+// @desc    Retrieve Email
+// @route   GET /api/contact/:id
+// @access  Private/Admin
+exports.retrieveEmail = async (req, res) => {
+    try {
+        const data = await resend.emails.get(req.params.id);
+        res.status(200).json({ success: true, data });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+};
+
+// @desc    Update Email
+// @route   PUT /api/contact/:id
+// @access  Private/Admin
+exports.updateEmail = async (req, res) => {
+    try {
+        const { scheduledAt } = req.body;
+        const data = await resend.emails.update({ id: req.params.id, scheduledAt });
+        res.status(200).json({ success: true, data });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+};
+
+// @desc    Cancel Email
+// @route   DELETE /api/contact/:id
+// @access  Private/Admin
+exports.cancelEmail = async (req, res) => {
+    try {
+        const data = await resend.emails.cancel(req.params.id);
+        res.status(200).json({ success: true, data });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+};
+
+// @desc    List Emails
+// @route   GET /api/contact/list
+// @access  Private/Admin
+exports.listEmails = async (req, res) => {
+    try {
+        const { data, error } = await resend.emails.list();
+        if (error) throw error;
+        res.status(200).json({ success: true, data });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+};
+
+// @desc    List Attachments
+// @route   GET /api/contact/:emailId/attachments
+// @access  Private/Admin
+exports.listAttachments = async (req, res) => {
+    try {
+        const { data, error } = await resend.emails.attachments.list({ emailId: req.params.emailId });
+        if (error) throw error;
+        res.status(200).json({ success: true, data });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+};
+
+// @desc    Retrieve Attachment
+// @route   GET /api/contact/:emailId/attachments/:id
+// @access  Private/Admin
+exports.retrieveAttachment = async (req, res) => {
+    try {
+        const { data, error } = await resend.emails.attachments.get({ id: req.params.id, emailId: req.params.emailId });
+        if (error) throw error;
+        res.status(200).json({ success: true, data });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+};
+
