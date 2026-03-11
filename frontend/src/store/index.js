@@ -10,6 +10,19 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response?.status === 401) {
+            console.warn('Session expired or unauthorized access detected.');
+            localStorage.removeItem('kiran_token');
+            // If we are in a component, we would use navigate('/login')
+            // but here we just clear the state if needed by the individual catch blocks
+        }
+        return Promise.reject(error);
+    }
+);
+
 export const useAuthStore = create(
     persist(
         (set, get) => ({
