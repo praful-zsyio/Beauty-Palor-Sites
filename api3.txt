@@ -1,5 +1,6 @@
 🌸 Kiran Beauty Salon & Academy - API JSON Examples
-Base URL: http://localhost:5000
+Base URL (Local):  http://localhost:5000
+Base URL (Render): https://beauty-palor-sites-4.onrender.com
 
 ================================================================================
 --- AUTH ROUTES ---
