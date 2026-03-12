@@ -8,6 +8,7 @@
     "dev": "nodemon server.js",
     "db:reset": "node scripts/manage-db.js --reset",
     "db:clear": "node scripts/manage-db.js --clear",
+    "services:reset": "node scripts/manage-db.js --clear-services",
     "reset-db": "node scripts/resetDb.js"
   },
   "keywords": [

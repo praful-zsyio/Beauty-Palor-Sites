@@ -94,6 +94,12 @@ const Service = {
         db.prepare('DELETE FROM services WHERE id = ?').run(id);
     },
 
+    deleteAll: () => {
+        db.prepare('DELETE FROM services').run();
+        // Clear related reviews too if wanted, or let CASCADE handle it
+        db.prepare('DELETE FROM reviews').run(); 
+    },
+
     addReview: (serviceId, userId, name, rating, comment) => {
         // Check existing review
         const existing = db.prepare('SELECT id FROM reviews WHERE service_id = ? AND user_id = ?').get(serviceId, userId);

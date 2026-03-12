@@ -6,6 +6,7 @@ const {
     createService,
     updateService,
     deleteService,
+    deleteAllServices,
     addReview,
     getCategories
 } = require('../controllers/serviceController');
@@ -23,6 +24,7 @@ router.post('/:id/reviews', protect, addReview);
 
 // Admin-level actions made public for your development/testing
 router.post('/', createService);
+router.delete('/', deleteAllServices);
 router.put('/:id', updateService);
 router.delete('/:id', deleteService);
 

@@ -77,6 +77,16 @@ exports.deleteService = async (req, res, next) => {
     }
 };
 
+// @route DELETE /api/services (Admin) - Delete All
+exports.deleteAllServices = async (req, res, next) => {
+    try {
+        Service.deleteAll();
+        res.status(200).json({ success: true, message: 'All services and reviews deleted successfully' });
+    } catch (error) {
+        next(error);
+    }
+};
+
 // @route POST /api/services/:id/reviews
 exports.addReview = async (req, res, next) => {
     try {

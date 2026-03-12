@@ -180,9 +180,9 @@ const initDB = () => {
         console.log('👤 Default Admin Created: admin@kiran.com / admin123');
     }
 
-    // Seed services if none exist
+    // Seed services if none exist (and seeding not disabled)
     const serviceCount = db.prepare('SELECT COUNT(*) as count FROM services').get().count;
-    if (serviceCount === 0) {
+    if (serviceCount === 0 && process.env.SKIP_SEEDING !== 'true') {
         const insertService = db.prepare(`
             INSERT INTO services (name, description, short_description, category, price, discounted_price, duration, thumbnail, features, includes, tags, is_featured, is_popular, sort_order)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)

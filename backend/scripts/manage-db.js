@@ -45,14 +45,33 @@ const clearTables = () => {
     }
 };
 
+const clearServices = () => {
+    if (!fs.existsSync(dbPath)) {
+        console.log('❌ Database file does not exist.');
+        return;
+    }
+    const db = new Database(dbPath);
+    console.log('🧹 Deleting ALL services and reviews...');
+    try {
+        db.exec('DELETE FROM services');
+        db.exec('DELETE FROM reviews');
+        console.log('✅ All services and reviews removed from database.');
+    } catch (err) {
+        console.error('❌ Error clearing services:', err.message);
+    } finally {
+        db.close();
+    }
+};
+
 const args = process.argv.slice(2);
 const command = args[0] || '--reset';
 
 if (command === '--reset') {
     resetDb();
-    console.log('✨ Data will be fully re-initialized on next start.');
 } else if (command === '--clear') {
     clearTables();
+} else if (command === '--clear-services') {
+    clearServices();
 } else {
-    console.log('Usage: node scripts/manage-db.js [--reset | --clear]');
+    console.log('Usage: node scripts/manage-db.js [--reset | --clear | --clear-services]');
 }
