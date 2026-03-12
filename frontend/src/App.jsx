@@ -6,6 +6,7 @@ import { useAuthStore } from './store';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Loader from './components/Loader';
+import Chatbot from './components/Chatbot';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
@@ -88,6 +89,7 @@ function App() {
           </Routes>
         </Suspense>
         <Footer />
+        <Chatbot />
       </BrowserRouter>
     </HelmetProvider>
   );
