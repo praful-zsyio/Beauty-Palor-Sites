@@ -7,10 +7,19 @@ const dbPath = path.join(__dirname, '..', 'data', 'kiran_beauty.db');
 const resetDb = () => {
     if (fs.existsSync(dbPath)) {
         console.log(`🗑️  Deleting database at ${dbPath}...`);
-        fs.unlinkSync(dbPath);
-        if (fs.existsSync(`${dbPath}-shm`)) fs.unlinkSync(`${dbPath}-shm`);
-        if (fs.existsSync(`${dbPath}-wal`)) fs.unlinkSync(`${dbPath}-wal`);
-        console.log('✅ Database file removed.');
+        try {
+            fs.unlinkSync(dbPath);
+            if (fs.existsSync(`${dbPath}-shm`)) fs.unlinkSync(`${dbPath}-shm`);
+            if (fs.existsSync(`${dbPath}-wal`)) fs.unlinkSync(`${dbPath}-wal`);
+            console.log('✅ Database file removed.');
+        } catch (err) {
+            if (err.code === 'EBUSY') {
+                console.error('❌ Error: Database is locked!');
+                console.error('👉 Please STOP your backend server (Press Ctrl+C in the server terminal) and try again.');
+            } else {
+                console.error('❌ Failed to delete database:', err.message);
+            }
+        }
     } else {
         console.log('ℹ️ No database file found to delete.');
     }
