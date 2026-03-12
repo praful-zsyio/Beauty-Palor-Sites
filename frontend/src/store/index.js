@@ -2,7 +2,10 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import axios from 'axios';
 
-const api = axios.create({ baseURL: import.meta.env.VITE_API_URL || 'https://beauty-palor-sites-4.onrender.com/api', withCredentials: true });
+const api = axios.create({
+    baseURL: import.meta.env.VITE_API_URL || '/api',
+    withCredentials: true
+});
 
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem('kiran_token');

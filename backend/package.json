@@ -5,7 +5,10 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "db:reset": "node scripts/manage-db.js --reset",
+    "db:clear": "node scripts/manage-db.js --clear",
+    "reset-db": "node scripts/resetDb.js"
   },
   "keywords": [
     "beauty",

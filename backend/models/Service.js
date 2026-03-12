@@ -90,6 +90,10 @@ const Service = {
         db.prepare(`UPDATE services SET is_active = 0, updated_at = strftime('%s','now') WHERE id = ?`).run(id);
     },
 
+    delete: (id) => {
+        db.prepare('DELETE FROM services WHERE id = ?').run(id);
+    },
+
     addReview: (serviceId, userId, name, rating, comment) => {
         // Check existing review
         const existing = db.prepare('SELECT id FROM reviews WHERE service_id = ? AND user_id = ?').get(serviceId, userId);

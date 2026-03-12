@@ -179,6 +179,51 @@ const initDB = () => {
         `).run('Admin', 'admin@kiran.com', hashedPassword, 'admin');
         console.log('👤 Default Admin Created: admin@kiran.com / admin123');
     }
+
+    // Seed services if none exist
+    const serviceCount = db.prepare('SELECT COUNT(*) as count FROM services').get().count;
+    if (serviceCount === 0) {
+        const insertService = db.prepare(`
+            INSERT INTO services (name, description, short_description, category, price, discounted_price, duration, thumbnail, features, includes, tags, is_featured, is_popular, sort_order)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `);
+
+        const services = [
+            // HAIR
+            ['Hair Cut & Styling', 'Professional haircut and styling by our expert stylists. Get a fresh new look with our precision cuts tailored to your face shape and lifestyle.', 'Expert cut + blow dry', 'Hair', 500, 450, 45, 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800', JSON.stringify(['Wash & Condition', 'Precision Cut', 'Blow Dry', 'Style Finish']), JSON.stringify(['Free Head Massage']), JSON.stringify(['haircut', 'styling', 'blowdry']), 1, 1, 1],
+            ['Hair Coloring & Highlights', 'Transform your look with vibrant hair color or subtle highlights. We use premium, ammonia-free colors for a healthy shine.', 'Vibrant, long-lasting color', 'Hair', 2000, 1800, 120, 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800', JSON.stringify(['Color Consultation', 'Patch Test', 'Color Application', 'Deep Conditioning']), JSON.stringify(['Complimentary Toner', 'Color Protection Serum']), JSON.stringify(['hair color', 'highlights', 'balayage']), 1, 1, 2],
+            ['Keratin Smoothing Treatment', 'Eliminate frizz and restore shine with our professional keratin treatment. Enjoy smooth, manageable hair for up to 6 months.', 'Frizz-free hair for 6 months', 'Hair', 4500, 4000, 180, 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800', JSON.stringify(['Clarifying Shampoo', 'Keratin Application', 'Flat Iron Sealing', 'After-care Kit']), JSON.stringify(['Free Deep Conditioning', 'Keratin Shampoo Sample']), JSON.stringify(['keratin', 'smoothing', 'anti-frizz']), 0, 1, 3],
+            ['Bridal Hair Styling', 'Look breathtaking on your big day with our signature bridal hair styling. Includes trial session and wedding day service.', 'Perfect bridal look for your big day', 'Hair', 3500, 3000, 120, 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800', JSON.stringify(['Hair Trial Session', 'Updo / Half-up Style', 'Accessories Pinning', 'Final Touch-up']), JSON.stringify(['Free Veil Pinning', 'Hair Accessories Kit']), JSON.stringify(['bridal', 'wedding', 'updo']), 1, 0, 4],
+
+            // SKIN
+            ['Classic Facial', 'Revitalize your skin with our signature classic facial. Deep cleansing, exfoliation, and hydration for a glowing complexion.', 'Deep cleanse & hydration glow', 'Skin', 1200, 999, 60, 'https://images.unsplash.com/photo-1512290923902-8a9f81dc2069?w=800', JSON.stringify(['Deep Cleansing', 'Steam', 'Exfoliation', 'Mask & Moisturization']), JSON.stringify(['Free Face Massage', 'Toner Application']), JSON.stringify(['facial', 'skincare', 'glow']), 1, 1, 5],
+            ['Anti-Aging Treatment', 'Turn back the clock with our advanced anti-aging facial. Targets fine lines, wrinkles, and loss of elasticity for youthful skin.', 'Reduce fine lines & look younger', 'Skin', 3500, 3000, 90, 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800', JSON.stringify(['Skin Analysis', 'Collagen Infusion', 'Microcurrent Therapy', 'Eye Treatment']), JSON.stringify(['Free Serum Application', 'Sunscreen']), JSON.stringify(['anti-aging', 'wrinkles', 'collagen']), 1, 0, 6],
+            ['Acne Treatment Facial', 'Targeted treatment for acne-prone skin. Reduces breakouts, controls sebum, and calms inflammation for clearer skin.', 'Clear skin & reduced breakouts', 'Skin', 1800, 1500, 75, 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=800', JSON.stringify(['Deep Pore Cleansing', 'Extraction', 'LED Light Therapy', 'Soothing Mask']), JSON.stringify(['Free Spot Treatment', 'Acne Gel Sample']), JSON.stringify(['acne', 'pimples', 'clear skin']), 0, 1, 7],
+
+            // NAILS
+            ['Manicure & Nail Art', 'Treat your hands to a luxurious manicure with your choice of stunning nail art designs by our skilled nail artists.', 'Beautiful nails with custom art', 'Nails', 800, 699, 60, 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800', JSON.stringify(['Nail Shaping', 'Cuticle Care', 'Base & Top Coat', 'Custom Nail Art']), JSON.stringify(['Free Hand Massage', 'Nail Oil']), JSON.stringify(['manicure', 'nail art', 'gel nails']), 0, 1, 8],
+            ['Gel Pedicure', 'Pamper your feet with our luxurious gel pedicure. Long-lasting color with foot scrub, massage, and moisturization included.', 'Soft, beautiful feet with gel color', 'Nails', 1200, 999, 75, 'https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=800', JSON.stringify(['Foot Soak', 'Scrub & Exfoliation', 'Nail Shaping', 'Gel Polish Application']), JSON.stringify(['Free Foot Massage', 'Paraffin Wax Dip']), JSON.stringify(['pedicure', 'gel nails', 'foot care']), 0, 1, 9],
+
+            // MAKEUP
+            ['Party Makeup', 'Get party-ready with our glamorous makeup look. From subtle elegance to bold dramatic — we create what you envision.', 'Glamorous look for any event', 'Makeup', 2000, 1800, 60, 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800', JSON.stringify(['Skin Prep', 'Foundation & Contouring', 'Eye Makeup', 'Lip & Setting Spray']), JSON.stringify(['Free Lashes', 'Touch-up Kit']), JSON.stringify(['makeup', 'party', 'glam']), 0, 1, 10],
+            ['Bridal Makeup', 'Look absolutely stunning on your wedding day with our professional bridal makeup. Includes HD makeup, airbrush finish, and long-lasting formula.', 'Flawless HD bridal look', 'Makeup', 8000, 7000, 150, 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800', JSON.stringify(['Skin Prep & Primer', 'HD Foundation', 'Contouring & Highlighting', 'Eye & Lip Makeup', 'Setting & Finishing']), JSON.stringify(['Free Lashes', 'Hair Accessories', 'Touch-up Kit']), JSON.stringify(['bridal makeup', 'wedding', 'HD makeup']), 1, 1, 11],
+
+            // SPA
+            ['Swedish Full Body Massage', 'Unwind and de-stress with our relaxing full body Swedish massage. Eases muscle tension and promotes deep relaxation.', 'Total relaxation & stress relief', 'Spa', 3000, 2700, 90, 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800', JSON.stringify(['Hot Towel Wrap', 'Aromatherapy Oil', 'Full Body Massage', 'Scalp Massage']), JSON.stringify(['Herbal Tea', 'Relaxation Lounge Access']), JSON.stringify(['massage', 'spa', 'relaxation']), 1, 0, 12],
+            ['Head, Face & Neck Massage', 'A targeted massage focusing on the head, face, and neck to relieve tension headaches and facial stress.', 'Relieve stress & headaches', 'Spa', 1000, 899, 45, 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800', JSON.stringify(['Scalp Massage', 'Acupressure Points', 'Neck & Shoulder Relief', 'Facial Massage']), JSON.stringify(['Hot Oil Treatment']), JSON.stringify(['head massage', 'relaxation', 'stress relief']), 0, 1, 13],
+
+            // BRIDAL
+            ['Complete Bridal Package', 'Our all-inclusive bridal package covers everything — from bridal makeup and hair styling to mehendi and pre-bridal skin treatments.', 'Complete transformation for your big day', 'Bridal', 25000, 22000, 480, 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800', JSON.stringify(['Pre-Bridal Facial', 'Bridal Makeup', 'Bridal Hair Styling', 'Mehendi Application', 'Nail Art']), JSON.stringify(['Free Skin Consultation', 'Groom Grooming Package', 'Touch-up Kit', 'Bridal Gift Bag']), JSON.stringify(['bridal package', 'wedding', 'complete package']), 1, 1, 14],
+
+            // ACADEMY
+            ['Professional Makeup Course', 'Learn the art of professional makeup from industry experts. Covers bridal, editorial, and everyday makeup techniques with hands-on training.', '6-week certified makeup course', 'Academy', 15000, 12000, 2880, 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800', JSON.stringify(['Basic & Advanced Makeup', 'Bridal Makeup', 'Airbrush Technique', 'Industry Tips & Tricks']), JSON.stringify(['Kit Included', 'Certificate on Completion', 'Job Placement Assistance']), JSON.stringify(['makeup course', 'academy', 'certification']), 1, 0, 15],
+        ];
+
+        for (const s of services) {
+            insertService.run(...s);
+        }
+        console.log(`🌸 Seeded ${services.length} services successfully`);
+    }
 };
 
 // Helper: generate appointment ID

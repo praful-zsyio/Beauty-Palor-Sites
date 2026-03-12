@@ -68,8 +68,10 @@ exports.deleteService = async (req, res, next) => {
     try {
         const service = Service.findById(req.params.id);
         if (!service) return res.status(404).json({ success: false, message: 'Service not found' });
-        Service.deactivate(req.params.id);
-        res.status(200).json({ success: true, message: 'Service deactivated successfully' });
+        
+        // Permanent deletion as requested
+        Service.delete(req.params.id);
+        res.status(200).json({ success: true, message: 'Service deleted permanently' });
     } catch (error) {
         next(error);
     }
