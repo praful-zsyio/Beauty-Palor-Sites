@@ -22,13 +22,43 @@ const errorHandler = require('./middleware/error');
 
 const app = express();
 
-// Security
-app.use(helmet());
+// CORS - Must be BEFORE helmet and other middlewares
+const allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://beauty-palor-sites-4.onrender.com',
+    'https://beauty-palor-sites-gcl8-d5y7v9kjw.vercel.app',
+    'https://beauty-palor-sites-z6r1.vercel.app'
+];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl)
+        if (!origin) return callback(null, true);
+        
+        const isAllowed = allowedOrigins.includes(origin) || 
+                         origin.endsWith('.vercel.app') || 
+                         process.env.NODE_ENV === 'development';
+        
+        if (isAllowed) {
+            callback(null, true);
+        } else {
+            // For now, allow all but track for security
+            callback(null, true);
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+    optionsSuccessStatus: 200
+}));
+
+// Security - Relaxed for cross-origin
+app.use(helmet({
+    crossOriginResourcePolicy: false,
+    crossOriginEmbedderPolicy: false,
+}));
 app.use(morgan('dev'));
-app.use((req, res, next) => {
-    console.log(`>>> Incoming Request: ${req.method} ${req.originalUrl}`);
-    next();
-});
 
 // Rate limiting
 const limiter = rateLimit({
@@ -42,29 +72,6 @@ app.use('/api', limiter);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
-
-// CORS
-const allowedOrigins = [
-    'http://localhost:5173',
-    'http://localhost:3000',
-    'https://beauty-palor-sites-4.onrender.com',
-    'https://beauty-palor-sites-gcl8-d5y7v9kjw.vercel.app'
-];
-
-app.use(cors({
-    origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) !== -1 || origin.includes('vercel.app')) {
-            callback(null, true);
-        } else {
-            callback(null, true); // Still allowing all for maximum compatibility as requested earlier, but tracking origins
-        }
-    },
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-}));
 
 // Static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
