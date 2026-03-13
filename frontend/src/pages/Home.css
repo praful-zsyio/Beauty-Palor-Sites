@@ -229,7 +229,7 @@
 
 /* ===== STATS ===== */
 .stats-section {
-    background: white;
+    background: var(--white);
     padding: 3rem 0;
     border-bottom: 1px solid rgba(244, 63, 94, 0.06);
     box-shadow: 0 4px 32px rgba(26, 26, 46, 0.04);
@@ -365,7 +365,7 @@
 
 /* ===== FEATURED SERVICES ===== */
 .featured-section {
-    background: white;
+    background: var(--white);
 }
 
 .services-skeleton.grid-3 {
@@ -411,7 +411,7 @@
 }
 
 .why-image-card {
-    background: white;
+    background: var(--white);
     border-radius: var(--radius-xl);
     height: 320px;
     display: flex;
@@ -447,7 +447,7 @@
 
 .why-stat {
     flex: 1;
-    background: white;
+    background: var(--white);
     border-radius: var(--radius-md);
     padding: 1.25rem;
     text-align: center;
@@ -488,7 +488,7 @@
     width: 48px;
     height: 48px;
     border-radius: var(--radius-md);
-    background: white;
+    background: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -512,7 +512,7 @@
 
 /* ===== TESTIMONIALS ===== */
 .testimonials-section {
-    background: white;
+    background: var(--white);
 }
 
 .testimonials-grid {
@@ -587,7 +587,7 @@
 /* ===== CTA ===== */
 .cta-section {
     padding: 3rem 0 5rem;
-    background: white;
+    background: var(--white);
 }
 
 .cta-card {

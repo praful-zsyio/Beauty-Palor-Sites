@@ -1,5 +1,5 @@
 .service-card {
-    background: white;
+    background: var(--white);
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(26, 26, 46, 0.06);

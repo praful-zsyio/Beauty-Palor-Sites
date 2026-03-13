@@ -38,7 +38,7 @@ const AdminRoute = ({ children }) => {
 
 function App() {
   const { token, getMe } = useAuthStore();
-  const { theme } = useThemeStore();
+  const { theme, setTheme } = useThemeStore();
 
   useEffect(() => {
     if (token) getMe();
@@ -47,6 +47,19 @@ function App() {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
+
+  // Handle system theme changes
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e) => {
+      // Only change automatically if the user hasn't explicitly set a preference in this session?
+      // Actually, let's just follow system if it changes, as requested.
+      setTheme(e.matches ? 'dark' : 'light');
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, [setTheme]);
 
   return (
     <HelmetProvider>

@@ -23,7 +23,7 @@
     align-items: flex-start;
     gap: 1rem;
     padding: 1.25rem;
-    background: white;
+    background: var(--white);
     border-radius: var(--radius-md);
     border: 1px solid rgba(244, 63, 94, 0.08);
     box-shadow: 0 4px 16px rgba(26, 26, 46, 0.04);
@@ -61,7 +61,7 @@
 }
 
 .contact-form-card {
-    background: white;
+    background: var(--white);
     border-radius: var(--radius-xl);
     padding: 2.5rem;
     box-shadow: 0 20px 60px rgba(26, 26, 46, 0.08);

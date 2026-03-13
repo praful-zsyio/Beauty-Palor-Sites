@@ -73,7 +73,7 @@
 }
 
 .dash-stat-card {
-    background: white;
+    background: var(--white);
     border-radius: var(--radius-lg);
     padding: 1.5rem;
     text-align: center;
@@ -173,7 +173,7 @@
 }
 
 .apt-card {
-    background: white;
+    background: var(--white);
     border-radius: var(--radius-lg);
     padding: 1.25rem 1.5rem;
     display: flex;
@@ -264,7 +264,7 @@
 
 /* Profile */
 .profile-form {
-    background: white;
+    background: var(--white);
     border-radius: var(--radius-lg);
     padding: 1.75rem;
     border: 1px solid rgba(244, 63, 94, 0.06);

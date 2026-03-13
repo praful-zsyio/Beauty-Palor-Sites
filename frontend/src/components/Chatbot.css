@@ -23,7 +23,7 @@
 .chatbot-window {
     width: 380px;
     height: 550px;
-    background: white;
+    background: var(--white);
     border-radius: 1.5rem;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
     display: flex;
@@ -78,7 +78,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background: #f8fafc;
+    background: var(--cream);
 }
 
 .chat-bubble-wrapper {
@@ -99,8 +99,8 @@
 }
 
 .chat-bubble.bot {
-    background: white;
-    color: #334155;
+    background: var(--white);
+    color: var(--charcoal);
     border-bottom-left-radius: 0.2rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
@@ -113,10 +113,10 @@
 
 .chatbot-input-area {
     padding: 1.25rem;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid rgba(244, 63, 94, 0.1);
     display: flex;
     gap: 0.75rem;
-    background: white;
+    background: var(--white);
 }
 
 .chatbot-input-area input {
@@ -124,7 +124,7 @@
     border: none;
     outline: none;
     font-size: 0.95rem;
-    color: #334155;
+    color: var(--charcoal);
 }
 
 .chatbot-input-area button {

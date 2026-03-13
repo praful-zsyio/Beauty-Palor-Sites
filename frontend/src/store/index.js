@@ -365,7 +365,7 @@ export const useAdminStore = create((set) => ({
 export const useThemeStore = create(
     persist(
         (set) => ({
-            theme: 'dark',
+            theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
             toggleTheme: () => set((state) => ({ theme: state.theme === 'dark' ? 'light' : 'dark' })),
             setTheme: (t) => set({ theme: t }),
         }),
