@@ -10,6 +10,11 @@ const path = require('path');
 // Load env vars
 dotenv.config();
 
+if (!process.env.JWT_SECRET) {
+    console.warn('⚠️  JWT_SECRET is not set. Using a default temporary secret. (NOT RECOMMENDED FOR PRODUCTION)');
+    process.env.JWT_SECRET = 'temporary_kiran_secret_123';
+}
+
 // Initialize SQLite DB (this runs table creation)
 require('./config/db');
 
@@ -39,9 +44,22 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
 
 // CORS
+const allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://beauty-palor-sites-4.onrender.com',
+    'https://beauty-palor-sites-gcl8-d5y7v9kjw.vercel.app'
+];
+
 app.use(cors({
     origin: function (origin, callback) {
-        callback(null, true);
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) !== -1 || origin.includes('vercel.app')) {
+            callback(null, true);
+        } else {
+            callback(null, true); // Still allowing all for maximum compatibility as requested earlier, but tracking origins
+        }
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],

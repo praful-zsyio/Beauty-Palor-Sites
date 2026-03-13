@@ -3,15 +3,34 @@ const path = require('path');
 const fs = require('fs');
 
 // Ensure data directory exists
-const dataDir = path.join(__dirname, '..', 'data');
-if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+const appRoot = path.resolve(__dirname, '..');
+const dataDir = path.join(appRoot, 'data');
+try {
+    if (!fs.existsSync(dataDir)) {
+        console.log('📁 Creating data directory:', dataDir);
+        fs.mkdirSync(dataDir, { recursive: true });
+    }
+} catch (err) {
+    console.error('❌ Failed to create data directory:', err.message);
+}
 
 const dbPath = path.join(dataDir, 'kiran_beauty.db');
-const db = new Database(dbPath);
+console.log('💾 Database path:', dbPath);
 
-// Enable WAL mode for better performance
-db.pragma('journal_mode = WAL');
-db.pragma('foreign_keys = ON');
+let db;
+try {
+    db = new Database(dbPath, { 
+        verbose: process.env.NODE_ENV === 'development' ? console.log : null,
+        fileMustExist: false
+    });
+    // Enable WAL mode for better performance
+    db.pragma('journal_mode = WAL');
+    db.pragma('foreign_keys = ON');
+    console.log('✅ SQLite Database Connected');
+} catch (err) {
+    console.error('❌ SQLite Connection Error:', err.message);
+    process.exit(1); // Exit with code 1 if DB fails to connect
+}
 
 // ===== INITIALIZE TABLES =====
 const initDB = () => {

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { FiUsers, FiCalendar, FiDollarSign, FiPackage, FiActivity, FiArrowRight } from 'react-icons/fi';
 import { Helmet } from 'react-helmet-async';
 import { useAdminStore } from '../store';
@@ -16,7 +17,15 @@ export default function AdminDashboard() {
         { label: 'Total Revenue', value: `₹${stats?.totalRevenue.toLocaleString() || 0}`, icon: FiDollarSign, color: '#10b981', bg: '#ecfdf5' },
         { label: 'Total Bookings', value: stats?.totalAppointments || 0, icon: FiCalendar, color: '#6366f1', bg: '#eef2ff' },
         { label: 'Total Customers', value: stats?.totalUsers || 0, icon: FiUsers, color: '#f59e0b', bg: '#fffbeb' },
-        { label: 'Active Services', value: stats?.totalServices || 0, icon: FiPackage, color: '#ec4899', bg: '#fdf2f7' },
+        { label: 'Total Enquiries', value: stats?.totalEnquiries || 0, icon: FiActivity, color: '#ec4899', bg: '#fdf2f7' },
+    ];
+
+    const statusBreakdown = [
+        { label: 'Pending', count: stats?.pendingAppointments || 0, color: '#a16207', bg: '#fef9c3' },
+        { label: 'Confirmed', count: stats?.confirmedAppointments || 0, color: '#15803d', bg: '#dcfce7' },
+        { label: 'In Progress', count: stats?.inProgressAppointments || 0, color: '#1e40af', bg: '#dbeafe' },
+        { label: 'Cancelled', count: stats?.cancelledAppointments || 0, color: '#991b1b', bg: '#fee2e2' },
+        { label: 'No Show', count: stats?.noShowAppointments || 0, color: '#5b21b6', bg: '#ede9fe' },
     ];
 
     return (
@@ -37,7 +46,7 @@ export default function AdminDashboard() {
 
             <div className="container" style={{ marginTop: '-4rem', position: 'relative', zIndex: 10, paddingBottom: '5rem' }}>
                 {/* Stats Grid */}
-                <div className="grid-4" style={{ marginBottom: '3rem' }}>
+                <div className="grid-4" style={{ marginBottom: '2rem' }}>
                     {statCards.map((card, i) => (
                         <motion.div 
                             key={card.label} 
@@ -56,12 +65,25 @@ export default function AdminDashboard() {
                     ))}
                 </div>
 
+                {/* Status Breakdown Bar */}
+                <div className="admin-card" style={{ marginBottom: '3rem', padding: '1.5rem 2rem' }}>
+                    <h4 style={{ marginBottom: '1rem', fontSize: '0.9rem', color: 'var(--slate)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Appointment Breakdown</h4>
+                    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                        {statusBreakdown.map((item) => (
+                            <div key={item.label} style={{ background: item.bg, color: item.color, padding: '0.5rem 1rem', borderRadius: '50px', fontSize: '0.85rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <span>{item.label}:</span>
+                                <span>{item.count}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
                 <div className="grid-2-1">
                     {/* Recent Appointments */}
                     <div className="admin-card">
                         <div className="admin-card-header">
                             <h3 className="admin-card-title"><FiActivity /> Recent Appointments</h3>
-                            <button className="btn btn-outline btn-sm">View All <FiArrowRight /></button>
+                            <Link to="/admin/appointments" className="btn btn-outline btn-sm">View All <FiArrowRight /></Link>
                         </div>
                         <div className="admin-table-wrapper">
                             <table className="admin-table">

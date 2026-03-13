@@ -21,6 +21,7 @@ const About = lazy(() => import('./pages/About'));
 const Academy = lazy(() => import('./pages/Academy'));
 const Contact = lazy(() => import('./pages/Contact'));
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
+const AdminAppointments = lazy(() => import('./pages/AdminAppointments'));
 
 // Protected Route
 const ProtectedRoute = ({ children }) => {
@@ -99,6 +100,14 @@ function App() {
               element={
                 <AdminRoute>
                   <AdminDashboard />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/appointments"
+              element={
+                <AdminRoute>
+                  <AdminAppointments />
                 </AdminRoute>
               }
             />
