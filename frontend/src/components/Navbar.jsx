@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX, FiUser, FiLogOut, FiCalendar, FiChevronDown } from 'react-icons/fi';
+import { FiMenu, FiX, FiUser, FiLogOut, FiCalendar, FiChevronDown, FiActivity } from 'react-icons/fi';
 import { GiFlowerTwirl } from 'react-icons/gi';
 import { useAuthStore } from '../store';
 import toast from 'react-hot-toast';

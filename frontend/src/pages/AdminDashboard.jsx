@@ -14,7 +14,7 @@ export default function AdminDashboard() {
     }, []);
 
     const statCards = [
-        { label: 'Total Revenue', value: `₹${stats?.totalRevenue.toLocaleString() || 0}`, icon: FiDollarSign, color: '#10b981', bg: '#ecfdf5' },
+        { label: 'Total Revenue', value: `₹${(stats?.totalRevenue || 0).toLocaleString()}`, icon: FiDollarSign, color: '#10b981', bg: '#ecfdf5' },
         { label: 'Total Bookings', value: stats?.totalAppointments || 0, icon: FiCalendar, color: '#6366f1', bg: '#eef2ff' },
         { label: 'Total Customers', value: stats?.totalUsers || 0, icon: FiUsers, color: '#f59e0b', bg: '#fffbeb' },
         { label: 'Total Enquiries', value: stats?.totalEnquiries || 0, icon: FiActivity, color: '#ec4899', bg: '#fdf2f7' },
@@ -103,12 +103,12 @@ export default function AdminDashboard() {
                                                 <td colSpan="5"><div className="skeleton" style={{ height: '40px', margin: '10px 0' }} /></td>
                                             </tr>
                                         ))
-                                    ) : recentAppointments.length === 0 ? (
+                                    ) : (recentAppointments || []).length === 0 ? (
                                         <tr>
                                             <td colSpan="5" style={{ textAlign: 'center', padding: '3rem' }}>No recent appointments</td>
                                         </tr>
                                     ) : (
-                                        recentAppointments.map((apt) => (
+                                        (recentAppointments || []).map((apt) => (
                                             <tr key={apt.id}>
                                                 <td>
                                                     <div style={{ fontWeight: 600 }}>{apt.customer_name}</div>
