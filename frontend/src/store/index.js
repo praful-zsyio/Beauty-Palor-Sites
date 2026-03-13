@@ -341,4 +341,25 @@ export const useContactStore = create((set) => ({
     }
 }));
 
+export const useAdminStore = create((set) => ({
+    stats: null,
+    recentAppointments: [],
+    isLoading: false,
+    error: null,
+
+    fetchStats: async () => {
+        set({ isLoading: true, error: null });
+        try {
+            const res = await api.get('/admin/stats');
+            set({ 
+                stats: res.data.data.stats, 
+                recentAppointments: res.data.data.recentAppointments,
+                isLoading: false 
+            });
+        } catch (err) {
+            set({ error: err.response?.data?.message || 'Failed to fetch admin stats', isLoading: false });
+        }
+    }
+}));
+
 export { api };

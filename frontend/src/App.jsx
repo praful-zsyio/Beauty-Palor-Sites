@@ -20,11 +20,20 @@ const Gallery = lazy(() => import('./pages/Gallery'));
 const About = lazy(() => import('./pages/About'));
 const Academy = lazy(() => import('./pages/Academy'));
 const Contact = lazy(() => import('./pages/Contact'));
+const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 
 // Protected Route
 const ProtectedRoute = ({ children }) => {
   const { user, token } = useAuthStore();
   if (!user && !token) return <Navigate to="/login" replace />;
+  return children;
+};
+
+// Admin Route
+const AdminRoute = ({ children }) => {
+  const { user, token } = useAuthStore();
+  if (!user && !token) return <Navigate to="/login" replace />;
+  if (user && user.role !== 'admin') return <Navigate to="/dashboard" replace />;
   return children;
 };
 
@@ -83,6 +92,14 @@ function App() {
                 <ProtectedRoute>
                   <Dashboard />
                 </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin"
+              element={
+                <AdminRoute>
+                  <AdminDashboard />
+                </AdminRoute>
               }
             />
             <Route path="*" element={<Navigate to="/" replace />} />

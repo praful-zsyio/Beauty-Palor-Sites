@@ -126,6 +126,11 @@ export default function Navbar() {
                                         <Link to="/dashboard" className="dropdown-item">
                                             <FiUser size={15} /> My Dashboard
                                         </Link>
+                                        {user.role === 'admin' && (
+                                            <Link to="/admin" className="dropdown-item" style={{ color: 'var(--rose-500)', fontWeight: 600 }}>
+                                                <FiActivity size={15} /> Admin Panel
+                                            </Link>
+                                        )}
                                         <Link to="/book" className="dropdown-item">
                                             <FiCalendar size={15} /> Book Appointment
                                         </Link>
