@@ -80,11 +80,11 @@ exports.createAppointment = async (req, res, next) => {
         });
 
         // ── Send Email Notification ───────────────────────────────────────────
-        const ownerEmail = process.env.EMAIL_TO || 'prafulsonwane58@gmail.com';
+        const ownerEmails = (process.env.EMAIL_TO || 'prafulsonwane58@gmail.com,kiranbeautysalon@gmail.com').split(',').map(e => e.trim());
         const fromAddress = process.env.EMAIL_FROM || 'onboarding@resend.dev';
         const now = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
 
-        const emailHtml = `
+    const emailHtml = `
 <!DOCTYPE html>
 <html>
 <body style="font-family:'Segoe UI',Arial,sans-serif;background:#f6f3f8;padding:20px;">
@@ -116,12 +116,55 @@ exports.createAppointment = async (req, res, next) => {
 </body>
 </html>`;
 
+        const visitorHtml = `
+<!DOCTYPE html>
+<html>
+<body style="font-family:'Segoe UI',Arial,sans-serif;background:#f6f3f8;padding:20px;">
+  <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.05);">
+    <div style="background:linear-gradient(135deg,#f43f5e,#e11d48);padding:30px;text-align:center;color:#fff;">
+      <p style="font-size:30px;margin:0;">🌸</p>
+      <h1 style="margin:10px 0 0;font-size:22px;">Booking Confirmed!</h1>
+      <p style="margin:5px 0 0;opacity:0.9;">Hi ${customerName}, we're excited to see you!</p>
+    </div>
+    <div style="padding:30px;">
+      <p style="color:#374151;font-size:16px;">Your appointment at <strong>Kiran Beauty Salon & Academy</strong> has been successfully booked.</p>
+      
+      <div style="background:#fdf2f4;padding:20px;border-radius:12px;margin:20px 0;border-left:4px solid #f43f5e;">
+        <h3 style="margin:0 0 10px;color:#1a1a2e;">Appointment Details</h3>
+        <p style="margin:5px 0;"><strong>Service:</strong> ${service.name}</p>
+        <p style="margin:5px 0;"><strong>Date:</strong> ${new Date(date).toLocaleDateString('en-IN')}</p>
+        <p style="margin:5px 0;"><strong>Time:</strong> ${timeSlot}</p>
+        <p style="margin:5px 0;"><strong>Amount:</strong> ₹${totalAmount}</p>
+      </div>
+
+      <p style="color:#6b7280;font-size:14px;"><strong>Location:</strong> Men Corner, Kaka Complex, Pithampur, MP 454775</p>
+      <p style="color:#6b7280;font-size:14px;"><strong>Contact:</strong> +91 6265175996</p>
+      
+      <p style="margin-top:25px;font-style:italic;color:#374151;">Need to reschedule? Please contact us at least 24 hours in advance.</p>
+    </div>
+    <div style="background:#1a1a2e;color:rgba(255,255,255,0.6);padding:15px;text-align:center;font-size:12px;">
+      © 2025 Kiran Beauty Salon & Academy
+    </div>
+  </div>
+</body>
+</html>`;
+
         try {
+            // Send to Salon Owner(s)
             await resend.emails.send({
                 from: `Kiran Beauty Salon <${fromAddress}>`,
-                to: [ownerEmail],
+                to: ownerEmails,
+                replyTo: customerEmail,
                 subject: `📅 New Booking: ${service.name} — ${customerName}`,
                 html: emailHtml,
+            });
+
+            // Send to Customer (Auto-reply)
+            await resend.emails.send({
+                from: `Kiran Beauty Salon <${fromAddress}>`,
+                to: [customerEmail],
+                subject: `✅ Booking Confirmed: ${service.name} — Kiran Beauty Salon`,
+                html: visitorHtml,
             });
         } catch (emailErr) {
             console.error('Failed to send appointment notification email:', emailErr);

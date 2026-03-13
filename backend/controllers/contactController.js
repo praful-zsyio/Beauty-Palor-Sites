@@ -33,7 +33,7 @@ exports.sendContactEmail = async (req, res) => {
     await logToExcel('Enquiries', { name, email, phone, subject, message });
     await syncToGoogleSheets('Enquiries', { name, email, phone, subject, message });
 
-    const ownerEmail = process.env.EMAIL_TO || 'kiranbeautysalon@gmail.com';
+    const ownerEmails = (process.env.EMAIL_TO || 'prafulsonwane58@gmail.com,kiranbeautysalon@gmail.com').split(',').map(e => e.trim());
     const fromAddress = process.env.EMAIL_FROM || 'onboarding@resend.dev';
     const subjectLine = subject || 'General Enquiry';
     const now = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
@@ -214,7 +214,7 @@ exports.sendContactEmail = async (req, res) => {
         // Send notification to salon owner
         const ownerResponse = await resend.emails.send({
             from: `Kiran Beauty Salon <${fromAddress}>`,
-            to: [ownerEmail],
+            to: ownerEmails,
             replyTo: email,
             subject: `📬 New Contact: ${subjectLine} — ${name}`,
             html: ownerHtml,
