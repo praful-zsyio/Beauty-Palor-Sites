@@ -28,11 +28,12 @@ const sendTokenResponse = (user, statusCode, res) => {
 // @route POST /api/auth/register
 exports.register = async (req, res, next) => {
     try {
-        const { name, email, password, phone } = req.body;
+        const { name, email, password, phone, role } = req.body;
         if (!name || !email || !password) {
             return res.status(400).json({ success: false, message: 'Name, email and password are required' });
         }
-        const user = await User.create({ name, email, password, phone });
+        // role defaults to 'customer' in User model if not provided
+        const user = await User.create({ name, email, password, phone, role });
         sendTokenResponse(user, 201, res);
     } catch (error) {
         next(error);

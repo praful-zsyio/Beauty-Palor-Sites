@@ -9,7 +9,7 @@ import { GiFlowerTwirl } from 'react-icons/gi';
 import './Auth.css';
 
 export default function Register() {
-    const [form, setForm] = useState({ name: '', email: '', phone: '', password: '', confirmPassword: '' });
+    const [form, setForm] = useState({ name: '', email: '', phone: '', password: '', confirmPassword: '', role: 'customer' });
     const [showPass, setShowPass] = useState(false);
     const { register, isLoading } = useAuthStore();
     const navigate = useNavigate();
@@ -18,8 +18,17 @@ export default function Register() {
         e.preventDefault();
         if (form.password !== form.confirmPassword) { toast.error('Passwords do not match'); return; }
         if (form.password.length < 6) { toast.error('Password must be at least 6 characters'); return; }
-        const result = await register({ name: form.name, email: form.email, phone: form.phone, password: form.password });
-        if (result.success) { toast.success('Account created! 🎉'); navigate('/dashboard'); }
+        const result = await register({ 
+            name: form.name, 
+            email: form.email, 
+            phone: form.phone, 
+            password: form.password,
+            role: form.role
+        });
+        if (result.success) { 
+            toast.success('Account created! 🎉'); 
+            navigate(form.role === 'admin' ? '/admin' : '/dashboard'); 
+        }
         else toast.error(result.error || 'Registration failed');
     };
 
@@ -61,6 +70,18 @@ export default function Register() {
                             <FiMail className="input-icon" />
                             <input type="email" className="form-control input-padded" placeholder="your@email.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
                         </div>
+                    </div>
+                    <div className="form-group">
+                        <label className="form-label">Account Type</label>
+                        <select 
+                            className="form-control" 
+                            style={{ padding: '0.75rem 1rem' }}
+                            value={form.role} 
+                            onChange={(e) => setForm({ ...form, role: e.target.value })}
+                        >
+                            <option value="customer">🌸 Customer (Book Treatments)</option>
+                            <option value="admin">👑 Salon Owner (Admin Access)</option>
+                        </select>
                     </div>
                     <div className="grid-2">
                         <div className="form-group">
