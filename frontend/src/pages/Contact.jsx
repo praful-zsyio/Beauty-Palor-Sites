@@ -59,6 +59,20 @@ export default function Contact() {
                     <div className="contact-grid">
                         {/* Info */}
                         <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+                            {user?.role === 'admin' && (
+                                <div style={{ marginBottom: '2rem', padding: '1.5rem', background: 'var(--rose-50)', borderRadius: '1rem', border: '1px dashed var(--rose-200)' }}>
+                                    <h4 style={{ color: 'var(--rose-700)', marginBottom: '0.5rem' }}>Admin: Data Management</h4>
+                                    <p style={{ fontSize: '0.85rem', color: 'var(--slate)', marginBottom: '1rem' }}>Download the latest bookings and enquiry records in Excel format.</p>
+                                    <a 
+                                        href={`${import.meta.env.VITE_API_URL}/contact/export-excel`} 
+                                        className="btn btn-outline" 
+                                        style={{ fontSize: '0.85rem' }}
+                                        download
+                                    >
+                                        📥 Download Excel Database
+                                    </a>
+                                </div>
+                            )}
                             <div className="section-label">Get in Touch</div>
                             <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>We're Here to <span className="text-gradient">Help</span></h2>
                             <div className="contact-info-cards">

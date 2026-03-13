@@ -1,6 +1,8 @@
 const Appointment = require('../models/Appointment');
 const Service = require('../models/Service');
 const { Resend } = require('resend');
+const { logToExcel } = require('../utils/excelLogger');
+const { syncToGoogleSheets } = require('../utils/googleSheets');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -46,6 +48,31 @@ exports.createAppointment = async (req, res, next) => {
             tax_amount: taxAmount,
             total_amount: totalAmount,
             payment_method: paymentMethod || 'cash',
+        });
+
+        // ── Log to Excel ──────────────────────────────────────────────────────
+        await logToExcel('Bookings', {
+            id: appointment.appointment_id,
+            date: new Date(date).toLocaleDateString('en-IN'),
+            time: timeSlot,
+            service: service.name,
+            name: customerName,
+            email: customerEmail,
+            phone: customerPhone,
+            amount: totalAmount,
+            status: 'pending'
+        });
+
+        await syncToGoogleSheets('Bookings', {
+            id: appointment.appointment_id,
+            date: new Date(date).toLocaleDateString('en-IN'),
+            time: timeSlot,
+            service: service.name,
+            customer: customerName,
+            email: customerEmail,
+            phone: customerPhone,
+            amount: totalAmount,
+            status: 'pending'
         });
 
         // ── Send Email Notification ───────────────────────────────────────────

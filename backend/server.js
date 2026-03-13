@@ -86,7 +86,8 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
     console.log('\n🌸 Kiran Beauty Salon & Academy API');
-    console.log(`🚀 Server running in ${process.env.NODE_ENV || 'development'} mode`);
+    console.log(`🚀 Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+    console.log(`📧 Notification email set to: ${process.env.EMAIL_TO || 'Not Set'}`);
     console.log(`📡 API: http://localhost:${PORT}/api`);
     console.log(`💾 Database: SQLite → ./data/kiran_beauty.db`);
     console.log(`❤️  Health: http://localhost:${PORT}/api/health\n`);

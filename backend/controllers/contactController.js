@@ -1,6 +1,23 @@
 const { Resend } = require('resend');
+const { logToExcel, EXCEL_FILE_PATH } = require('../utils/excelLogger');
+const { syncToGoogleSheets } = require('../utils/googleSheets');
+const fs = require('fs');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+// @desc    Export data to Excel file for download
+// @route   GET /api/contact/export
+// @access  Private/Admin
+exports.exportToExcel = async (req, res) => {
+    try {
+        if (!fs.existsSync(EXCEL_FILE_PATH)) {
+            return res.status(404).json({ success: false, message: 'Excel file not generated yet. Submit a form first.' });
+        }
+        res.download(EXCEL_FILE_PATH, 'Kiran_Beauty_Database.xlsx');
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+};
 
 // @desc    Send contact form email
 // @route   POST /api/contact
@@ -11,6 +28,10 @@ exports.sendContactEmail = async (req, res) => {
     if (!name || !email || !message) {
         return res.status(400).json({ success: false, message: 'Name, email and message are required.' });
     }
+
+    // ── Log to Excel & Google Sheets ──────────────────────────────────────
+    await logToExcel('Enquiries', { name, email, phone, subject, message });
+    await syncToGoogleSheets('Enquiries', { name, email, phone, subject, message });
 
     const ownerEmail = process.env.EMAIL_TO || 'kiranbeautysalon@gmail.com';
     const fromAddress = process.env.EMAIL_FROM || 'onboarding@resend.dev';
@@ -200,8 +221,13 @@ exports.sendContactEmail = async (req, res) => {
         });
 
         if (ownerResponse.error) {
-            // Log the error for debugging but do NOT block the user from seeing the success message
-            console.error('Resend Owner Email Error (Likely Unverified Domain/Email):', ownerResponse.error);
+            console.error('❌ Resend Owner Email Error:', ownerResponse.error);
+            // Hint for common issues
+            if (ownerResponse.error.name === 'validation_error') {
+                console.error('💡 Hint: Resend Free tier only allows sending to your account email if domain is not verified.');
+            }
+        } else {
+            console.log('✅ Salon Owner Email Sent Successfully:', ownerResponse.data.id);
         }
 
         // Send auto-reply to visitor (Might fail if using onboarding@resend.dev and visitor email is unverified, so we don't throw on this)

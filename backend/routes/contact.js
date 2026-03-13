@@ -8,12 +8,14 @@ const {
     cancelEmail, 
     listEmails, 
     listAttachments, 
-    retrieveAttachment 
+    retrieveAttachment,
+    exportToExcel
 } = require('../controllers/contactController');
 const { protect, authorize } = require('../middleware/auth');
 
 // Public contact form
 router.post('/', sendContactEmail);
+router.get('/export-excel', exportToExcel);
 
 // 🌸 ADMIN CONTACT ROUTES MADE PUBLIC FOR DEVELOPMENT 🌸
 router.post('/batch', sendBatchEmails);
