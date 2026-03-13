@@ -1,5 +1,6 @@
 const Appointment = require('../models/Appointment');
 const Service = require('../models/Service');
+const User = require('../models/User');
 const { Resend } = require('resend');
 const { logToExcel } = require('../utils/excelLogger');
 const { syncToGoogleSheets } = require('../utils/googleSheets');
@@ -24,10 +25,6 @@ exports.createAppointment = async (req, res, next) => {
 
         const service = Service.findById(serviceId);
         if (!service) return res.status(404).json({ success: false, message: 'Service not found' });
-
-        // Update user loyalty points (e.g., 100 points per booking)
-        const User = require('../models/User');
-        User.addLoyaltyPoints(req.user.id, 100);
 
         // Check conflict
         const conflict = Appointment.checkConflict(date, timeSlot, staffId);
@@ -55,7 +52,6 @@ exports.createAppointment = async (req, res, next) => {
         });
 
         // Add loyalty points
-        const User = require('../models/User');
         User.addLoyaltyPoints(req.user.id, 100);
 
         // ── Log to Excel ──────────────────────────────────────────────────────
