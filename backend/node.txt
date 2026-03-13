@@ -1,0 +1,21 @@
+Create API key
+import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+resend.apiKeys.create({ name: 'Production' });
+
+List API keys
+import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+resend.apiKeys.list();
+
+Delete API key
+import { Resend } from 'resend';
+
+const resend = new Resend('re_xxxxxxxxx');
+
+resend.apiKeys.remove('5e4d5e4d-5e4d-5e4d-5e4d-5)
+API_KEY = "re_P1ipmAWX_BJgeJKvHQ9YharNnVjKe5XH8"

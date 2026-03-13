@@ -1,5 +1,8 @@
 const Appointment = require('../models/Appointment');
 const Service = require('../models/Service');
+const { Resend } = require('resend');
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const ALL_SLOTS = [
     '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
@@ -44,6 +47,54 @@ exports.createAppointment = async (req, res, next) => {
             total_amount: totalAmount,
             payment_method: paymentMethod || 'cash',
         });
+
+        // ── Send Email Notification ───────────────────────────────────────────
+        const ownerEmail = process.env.EMAIL_TO || 'prafulsonwane58@gmail.com';
+        const fromAddress = process.env.EMAIL_FROM || 'onboarding@resend.dev';
+        const now = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+
+        const emailHtml = `
+<!DOCTYPE html>
+<html>
+<body style="font-family:'Segoe UI',Arial,sans-serif;background:#f6f3f8;padding:20px;">
+  <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.05);">
+    <div style="background:linear-gradient(135deg,#f43f5e,#e11d48);padding:30px;text-align:center;color:#fff;">
+      <h1 style="margin:0;font-size:22px;">New Appointment Booking! 🌸</h1>
+      <p style="margin:5px 0 0;opacity:0.9;">Appointment ID: ${appointment.appointment_id}</p>
+    </div>
+    <div style="padding:30px;">
+      <h3 style="color:#1a1a2e;border-bottom:1px solid #eee;padding-bottom:10px;">Customer Details</h3>
+      <p><strong>Name:</strong> ${customerName}</p>
+      <p><strong>Email:</strong> ${customerEmail}</p>
+      <p><strong>Phone:</strong> ${customerPhone}</p>
+      
+      <h3 style="color:#1a1a2e;border-bottom:1px solid #eee;padding-bottom:10px;margin-top:25px;">Appointment Details</h3>
+      <p><strong>Service:</strong> ${service.name}</p>
+      <p><strong>Date:</strong> ${new Date(date).toLocaleDateString('en-IN')}</p>
+      <p><strong>Time:</strong> ${timeSlot}</p>
+      <p><strong>Total Amount:</strong> ₹${totalAmount}</p>
+      <p><strong>Payment Method:</strong> ${paymentMethod}</p>
+      
+      ${notes ? `<p><strong>Notes:</strong> ${notes}</p>` : ''}
+      ${specialRequests ? `<p><strong>Special Requests:</strong> ${specialRequests}</p>` : ''}
+    </div>
+    <div style="background:#1a1a2e;color:rgba(255,255,255,0.6);padding:15px;text-align:center;font-size:12px;">
+      © 2025 Kiran Beauty Salon & Academy · Sent at ${now}
+    </div>
+  </div>
+</body>
+</html>`;
+
+        try {
+            await resend.emails.send({
+                from: `Kiran Beauty Salon <${fromAddress}>`,
+                to: [ownerEmail],
+                subject: `📅 New Booking: ${service.name} — ${customerName}`,
+                html: emailHtml,
+            });
+        } catch (emailErr) {
+            console.error('Failed to send appointment notification email:', emailErr);
+        }
 
         res.status(201).json({ success: true, data: appointment });
     } catch (error) {
