@@ -17,6 +17,7 @@ export default function BookAppointment() {
     const { user } = useAuthStore();
     const { service, fetchService, services, fetchServices } = useServiceStore();
     const { bookAppointment, fetchAvailableSlots, availableSlots, isLoading } = useAppointmentStore();
+    const { getMe } = useAuthStore();
 
     const [step, setStep] = useState(serviceId ? 1 : 0);
     const [selectedService, setSelectedService] = useState(null);
@@ -64,6 +65,7 @@ export default function BookAppointment() {
         });
         if (result.success) {
             setBooked(result.data);
+            getMe(); // Update loyalty points
             toast.success('Appointment booked successfully! 🎉');
         } else {
             toast.error(result.error || 'Booking failed');

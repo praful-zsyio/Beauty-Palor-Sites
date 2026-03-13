@@ -67,7 +67,19 @@ exports.logout = async (req, res) => {
 exports.getMe = async (req, res, next) => {
     try {
         const user = User.findById(req.user.id);
-        res.status(200).json({ success: true, user: User.safeUser(user) });
+        const safeUser = User.safeUser(user);
+        res.status(200).json({
+            success: true,
+            user: {
+                _id: safeUser.id,
+                name: safeUser.name,
+                email: safeUser.email,
+                phone: safeUser.phone,
+                role: safeUser.role,
+                avatar: safeUser.avatar,
+                loyaltyPoints: safeUser.loyalty_points,
+            }
+        });
     } catch (error) {
         next(error);
     }
@@ -78,7 +90,19 @@ exports.updateProfile = async (req, res, next) => {
     try {
         const { name, email, phone } = req.body;
         const user = User.update(req.user.id, { name, email, phone });
-        res.status(200).json({ success: true, user: User.safeUser(user) });
+        const safeUser = User.safeUser(user);
+        res.status(200).json({
+            success: true,
+            user: {
+                _id: safeUser.id,
+                name: safeUser.name,
+                email: safeUser.email,
+                phone: safeUser.phone,
+                role: safeUser.role,
+                avatar: safeUser.avatar,
+                loyaltyPoints: safeUser.loyalty_points,
+            }
+        });
     } catch (error) {
         next(error);
     }

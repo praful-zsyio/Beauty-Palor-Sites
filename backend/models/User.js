@@ -49,6 +49,11 @@ const User = {
         db.prepare(`UPDATE users SET password = ?, updated_at = strftime('%s','now') WHERE id = ?`).run(hashed, id);
     },
 
+    addLoyaltyPoints: (id, points) => {
+        db.prepare('UPDATE users SET loyalty_points = loyalty_points + ? WHERE id = ?').run(points, id);
+        return User.findById(id);
+    },
+
     matchPassword: async (inputPassword, storedHash) => {
         return await bcrypt.compare(inputPassword, storedHash);
     },

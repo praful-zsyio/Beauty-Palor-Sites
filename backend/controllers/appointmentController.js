@@ -25,6 +25,10 @@ exports.createAppointment = async (req, res, next) => {
         const service = Service.findById(serviceId);
         if (!service) return res.status(404).json({ success: false, message: 'Service not found' });
 
+        // Update user loyalty points (e.g., 100 points per booking)
+        const User = require('../models/User');
+        User.addLoyaltyPoints(req.user.id, 100);
+
         // Check conflict
         const conflict = Appointment.checkConflict(date, timeSlot, staffId);
         if (conflict) return res.status(400).json({ success: false, message: 'This time slot is already booked' });
@@ -49,6 +53,10 @@ exports.createAppointment = async (req, res, next) => {
             total_amount: totalAmount,
             payment_method: paymentMethod || 'cash',
         });
+
+        // Add loyalty points
+        const User = require('../models/User');
+        User.addLoyaltyPoints(req.user.id, 100);
 
         // ── Log to Excel ──────────────────────────────────────────────────────
         await logToExcel('Bookings', {
