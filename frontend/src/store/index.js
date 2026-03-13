@@ -362,4 +362,15 @@ export const useAdminStore = create((set) => ({
     }
 }));
 
+export const useThemeStore = create(
+    persist(
+        (set) => ({
+            theme: 'dark',
+            toggleTheme: () => set((state) => ({ theme: state.theme === 'dark' ? 'light' : 'dark' })),
+            setTheme: (t) => set({ theme: t }),
+        }),
+        { name: 'kiran_theme' }
+    )
+);
+
 export { api };

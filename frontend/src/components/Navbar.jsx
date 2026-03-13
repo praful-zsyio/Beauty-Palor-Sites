@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX, FiUser, FiLogOut, FiCalendar, FiChevronDown, FiActivity } from 'react-icons/fi';
+import { FiMenu, FiX, FiUser, FiLogOut, FiCalendar, FiChevronDown, FiActivity, FiSun, FiMoon } from 'react-icons/fi';
 import { GiFlowerTwirl } from 'react-icons/gi';
-import { useAuthStore } from '../store';
+import { useAuthStore, useThemeStore } from '../store';
 import toast from 'react-hot-toast';
 import './Navbar.css';
 
@@ -21,6 +21,7 @@ export default function Navbar() {
     const [isMobileOpen, setIsMobileOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const { user, logout } = useAuthStore();
+    const { theme, toggleTheme } = useThemeStore();
     const navigate = useNavigate();
     const location = useLocation();
     const userMenuRef = useRef(null);
@@ -88,6 +89,29 @@ export default function Navbar() {
 
                 {/* Actions */}
                 <div className="nav-actions">
+                    {/* Theme Toggle */}
+                    <motion.button
+                        className="theme-toggle"
+                        onClick={toggleTheme}
+                        aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                        whileTap={{ scale: 0.9 }}
+                        whileHover={{ scale: 1.1 }}
+                        title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+                    >
+                        <AnimatePresence mode="wait" initial={false}>
+                            <motion.span
+                                key={theme}
+                                initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                                animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                                exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                                transition={{ duration: 0.25 }}
+                                style={{ display: 'flex', alignItems: 'center' }}
+                            >
+                                {theme === 'dark' ? <FiSun size={17} /> : <FiMoon size={17} />}
+                            </motion.span>
+                        </AnimatePresence>
+                    </motion.button>
+
                     <Link to="/book" className="btn btn-primary btn-sm">
                         <FiCalendar size={14} />
                         Book Now

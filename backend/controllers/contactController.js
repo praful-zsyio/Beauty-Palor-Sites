@@ -210,8 +210,10 @@ exports.sendContactEmail = async (req, res) => {
 </body>
 </html>`;
 
+    if (!resend) {
+        return res.status(200).json({ success: true, message: 'Your message has been received. We will get back to you within 24 hours! 🌸' });
+    }
     try {
-        // Send notification to salon owner
         const ownerResponse = await resend.emails.send({
             from: `Kiran Beauty Salon <${fromAddress}>`,
             to: ownerEmails,
@@ -262,6 +264,7 @@ exports.sendContactEmail = async (req, res) => {
 exports.sendBatchEmails = async (req, res) => {
     try {
         const { emails } = req.body; // Array of email objects
+        if (!resend) return res.status(503).json({ success: false, message: 'Email service not configured.' });
         const data = await resend.batch.send(emails);
         res.status(200).json({ success: true, data });
     } catch (err) {
@@ -274,6 +277,7 @@ exports.sendBatchEmails = async (req, res) => {
 // @access  Private/Admin
 exports.retrieveEmail = async (req, res) => {
     try {
+        if (!resend) return res.status(503).json({ success: false, message: 'Email service not configured.' });
         const data = await resend.emails.get(req.params.id);
         res.status(200).json({ success: true, data });
     } catch (err) {
@@ -287,6 +291,7 @@ exports.retrieveEmail = async (req, res) => {
 exports.updateEmail = async (req, res) => {
     try {
         const { scheduledAt } = req.body;
+        if (!resend) return res.status(503).json({ success: false, message: 'Email service not configured.' });
         const data = await resend.emails.update({ id: req.params.id, scheduledAt });
         res.status(200).json({ success: true, data });
     } catch (err) {
@@ -299,6 +304,7 @@ exports.updateEmail = async (req, res) => {
 // @access  Private/Admin
 exports.cancelEmail = async (req, res) => {
     try {
+        if (!resend) return res.status(503).json({ success: false, message: 'Email service not configured.' });
         const data = await resend.emails.cancel(req.params.id);
         res.status(200).json({ success: true, data });
     } catch (err) {
@@ -311,6 +317,7 @@ exports.cancelEmail = async (req, res) => {
 // @access  Private/Admin
 exports.listEmails = async (req, res) => {
     try {
+        if (!resend) return res.status(503).json({ success: false, message: 'Email service not configured.' });
         const { data, error } = await resend.emails.list();
         if (error) throw error;
         res.status(200).json({ success: true, data });
@@ -324,6 +331,7 @@ exports.listEmails = async (req, res) => {
 // @access  Private/Admin
 exports.listAttachments = async (req, res) => {
     try {
+        if (!resend) return res.status(503).json({ success: false, message: 'Email service not configured.' });
         const { data, error } = await resend.emails.attachments.list({ emailId: req.params.emailId });
         if (error) throw error;
         res.status(200).json({ success: true, data });
@@ -337,6 +345,7 @@ exports.listAttachments = async (req, res) => {
 // @access  Private/Admin
 exports.retrieveAttachment = async (req, res) => {
     try {
+        if (!resend) return res.status(503).json({ success: false, message: 'Email service not configured.' });
         const { data, error } = await resend.emails.attachments.get({ id: req.params.id, emailId: req.params.emailId });
         if (error) throw error;
         res.status(200).json({ success: true, data });

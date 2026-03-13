@@ -149,9 +149,10 @@ exports.createAppointment = async (req, res, next) => {
 </body>
 </html>`;
 
-        try {
-            // Send to Salon Owner(s)
-            await resend.emails.send({
+        if (resend) {
+            try {
+                // Send to Salon Owner(s)
+                await resend.emails.send({
                 from: `Kiran Beauty Salon <${fromAddress}>`,
                 to: ownerEmails,
                 replyTo: customerEmail,
@@ -167,7 +168,10 @@ exports.createAppointment = async (req, res, next) => {
                 html: visitorHtml,
             });
         } catch (emailErr) {
-            console.error('Failed to send appointment notification email:', emailErr);
+                console.error('Failed to send appointment notification email:', emailErr.message);
+            }
+        } else {
+            console.log('ℹ️  Email skipped: RESEND_API_KEY not configured');
         }
 
         res.status(201).json({ success: true, data: appointment });

@@ -2,13 +2,13 @@ import { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { HelmetProvider } from 'react-helmet-async';
-import { useAuthStore } from './store';
+import { useAuthStore, useThemeStore } from './store';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Loader from './components/Loader';
 import Chatbot from './components/Chatbot';
+import ThreeBackground from './components/ThreeBackground';
 
-// Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
 const Services = lazy(() => import('./pages/Services'));
 const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
@@ -23,14 +23,12 @@ const Contact = lazy(() => import('./pages/Contact'));
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 const AdminAppointments = lazy(() => import('./pages/AdminAppointments'));
 
-// Protected Route
 const ProtectedRoute = ({ children }) => {
   const { user, token } = useAuthStore();
   if (!user && !token) return <Navigate to="/login" replace />;
   return children;
 };
 
-// Admin Route
 const AdminRoute = ({ children }) => {
   const { user, token } = useAuthStore();
   if (!user && !token) return <Navigate to="/login" replace />;
@@ -40,16 +38,20 @@ const AdminRoute = ({ children }) => {
 
 function App() {
   const { token, getMe } = useAuthStore();
+  const { theme } = useThemeStore();
 
   useEffect(() => {
-    if (token) {
-      getMe();
-    }
+    if (token) getMe();
   }, [token]);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   return (
     <HelmetProvider>
       <BrowserRouter>
+        <ThreeBackground />
         <Toaster
           position="top-center"
           toastOptions={{
@@ -58,8 +60,8 @@ function App() {
               fontFamily: "'Inter', sans-serif",
               fontSize: '0.9rem',
               borderRadius: '12px',
-              background: '#1a1a2e',
-              color: '#fff',
+              background: theme === 'dark' ? '#1a1a2e' : '#ffffff',
+              color: theme === 'dark' ? '#fff' : '#1a1a2e',
               padding: '12px 20px',
               boxShadow: '0 8px 32px rgba(26,26,46,0.3)',
             },
@@ -68,53 +70,55 @@ function App() {
           }}
         />
         <Navbar />
-        <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/services/:id" element={<ServiceDetail />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/academy" element={<Academy />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route
-              path="/book/:serviceId?"
-              element={
-                <ProtectedRoute>
-                  <BookAppointment />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin"
-              element={
-                <AdminRoute>
-                  <AdminDashboard />
-                </AdminRoute>
-              }
-            />
-            <Route
-              path="/admin/appointments"
-              element={
-                <AdminRoute>
-                  <AdminAppointments />
-                </AdminRoute>
-              }
-            />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </Suspense>
-        <Footer />
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/services/:id" element={<ServiceDetail />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/academy" element={<Academy />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route
+                path="/book/:serviceId?"
+                element={
+                  <ProtectedRoute>
+                    <BookAppointment />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin"
+                element={
+                  <AdminRoute>
+                    <AdminDashboard />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="/admin/appointments"
+                element={
+                  <AdminRoute>
+                    <AdminAppointments />
+                  </AdminRoute>
+                }
+              />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Suspense>
+          <Footer />
+        </div>
         <Chatbot />
       </BrowserRouter>
     </HelmetProvider>
