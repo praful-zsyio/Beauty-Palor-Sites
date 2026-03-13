@@ -3,7 +3,7 @@ const { logToExcel, EXCEL_FILE_PATH } = require('../utils/excelLogger');
 const { syncToGoogleSheets } = require('../utils/googleSheets');
 const fs = require('fs');
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 // @desc    Export data to Excel file for download
 // @route   GET /api/contact/export

@@ -5,7 +5,7 @@ const { Resend } = require('resend');
 const { logToExcel } = require('../utils/excelLogger');
 const { syncToGoogleSheets } = require('../utils/googleSheets');
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 const ALL_SLOTS = [
     '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
