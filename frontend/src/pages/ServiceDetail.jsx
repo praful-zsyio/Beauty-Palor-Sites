@@ -33,7 +33,7 @@ export default function ServiceDetail() {
     return (
         <div className="service-detail-page">
             <Helmet>
-                <title>{service.name} | Kiran Beauty Salon</title>
+                <title>{service.name} | Shivani Beauty Palor</title>
                 <meta name="description" content={service.shortDescription || service.description?.slice(0, 155)} />
             </Helmet>
 

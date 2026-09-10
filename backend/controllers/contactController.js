@@ -170,7 +170,7 @@ exports.sendContactEmail = async (req, res) => {
             <td style="padding:36px 40px;">
               <p style="color:#374151;font-size:15px;line-height:1.8;margin:0 0 20px;">
                 Hi <strong>${name}</strong>,<br/><br/>
-                Thank you for reaching out to <strong>Kiran Beauty Salon &amp; Academy</strong>. We have successfully received your message and one of our team members will get back to you within <strong>24 hours</strong>.
+                Thank you for reaching out to <strong>Shivani Beauty Palor &amp; Academy</strong>. We have successfully received your message and one of our team members will get back to you within <strong>24 hours</strong>.
               </p>
 
               <!-- Summary Box -->
@@ -183,14 +183,14 @@ exports.sendContactEmail = async (req, res) => {
               <!-- Contact Info -->
               <div style="background:#f8fafc;border-radius:12px;padding:20px 24px;margin-bottom:24px;">
                 <p style="margin:0 0 12px;color:#1a1a2e;font-size:14px;font-weight:700;">📍 Our Salon</p>
-                <p style="margin:0 0 6px;color:#6b7280;font-size:13px;line-height:1.7;">Men Corner, Kaka Complex, New Kaka Complex<br/>Pithampur Industrial Area, Sagour Kuti<br/>Pithampur, Madhya Pradesh 454775</p>
-                <p style="margin:8px 0 0;color:#6b7280;font-size:13px;">📞 <a href="tel:+916265175996" style="color:#f43f5e;text-decoration:none;font-weight:600;">+91 6265175996</a></p>
+                <p style="margin:0 0 6px;color:#6b7280;font-size:13px;line-height:1.7;">New Agrawal Colony Near New Sun Bright School<br/>Pithampur, Madhya Pradesh</p>
+                <p style="margin:8px 0 0;color:#6b7280;font-size:13px;">📞 <a href="tel:+919302433799" style="color:#f43f5e;text-decoration:none;font-weight:600;">+91 9302433799</a></p>
               </div>
 
               <p style="color:#6b7280;font-size:14px;line-height:1.7;margin:0;">
                 While you wait, feel free to browse our services or book an appointment directly on our website.<br/><br/>
                 With love &amp; care,<br/>
-                <strong style="color:#f43f5e;">Kiran Beauty Salon &amp; Academy Team 🌸</strong>
+                <strong style="color:#f43f5e;">Shivani Beauty Palor &amp; Academy Team 🌸</strong>
               </p>
             </td>
           </tr>

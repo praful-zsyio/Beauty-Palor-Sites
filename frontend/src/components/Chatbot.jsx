@@ -8,7 +8,7 @@ export default function Chatbot() {
     const [isOpen, setIsOpen] = useState(false);
     const [message, setMessage] = useState('');
     const [chat, setChat] = useState([
-        { msg: "Hello! I'm your Kiran Beauty assistant. 🌸 How can I help you today?", type: 'bot' }
+        { msg: "Hello! I'm your Shivani Beauty Palor assistant. 🌸 How can I help you today?", type: 'bot' }
     ]);
     const [isLoading, setIsLoading] = useState(false);
     const scrollRef = useRef(null);

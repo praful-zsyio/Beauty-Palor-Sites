@@ -14,22 +14,22 @@ gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
   { number: '5000+', label: 'Happy Clients', icon: '😊' },
-  { number: '15+', label: 'Years Experience', icon: '⭐' },
-  { number: '50+', label: 'Expert Artists', icon: '💄' },
+  { number: 'Est. 2026', label: 'Founded Year', icon: '⭐' },
+  { number: '100%', label: 'Luxury Experience', icon: '💄' },
   { number: '200+', label: 'Services Offered', icon: '✨' },
 ];
 
 const categories = [
-  { name: 'Hair Care', icon: GiHairStrands, desc: 'Cuts, Color & Styling', color: '#fdf2f8', accent: '#ec4899', emoji: '💇' },
+  { name: 'Hair Care', icon: GiHairStrands, desc: 'Cuts, Color & Styling', color: '#fff5f5', accent: '#ff4d5a', emoji: '💇' },
   { name: 'Bridal', icon: GiFlowerTwirl, desc: 'Complete Bridal Packages', color: '#fef9e7', accent: '#d4a843', emoji: '👰' },
-  { name: 'Makeup', icon: GiLipstick, desc: 'Party & Event Makeup', color: '#fff1f2', accent: '#f43f5e', emoji: '💄' },
+  { name: 'Makeup', icon: GiLipstick, desc: 'Party & Event Makeup', color: '#ffebee', accent: '#ff3b4e', emoji: '💄' },
   { name: 'Nail Art', icon: GiNails, desc: 'Manicure & Pedicure', color: '#f0fdf4', accent: '#22c55e', emoji: '💅' },
   { name: 'Skin Care', icon: GiFlowerTwirl, desc: 'Facials & Treatments', color: '#fff7ed', accent: '#f97316', emoji: '✨' },
   { name: 'Spa', icon: GiFlowerTwirl, desc: 'Relaxation & Wellness', color: '#f0f9ff', accent: '#0ea5e9', emoji: '🧖' },
 ];
 
 const testimonials = [
-  { name: 'Priya Sharma', role: 'Bride', rating: 5, text: 'Kiran Beauty transformed my wedding day! The bridal makeup was absolutely stunning and lasted all day. I felt like a princess! Highly recommend to every bride.', avatar: 'P' },
+  { name: 'Priya Sharma', role: 'Bride', rating: 5, text: 'Shivani Beauty Palor transformed my wedding day! The bridal makeup was absolutely stunning and lasted all day. I felt like a princess! Highly recommend to every bride.', avatar: 'P' },
   { name: 'Anita Patel', role: 'Regular Client', rating: 5, text: 'The best salon experience I\'ve ever had. The staff is professional, the ambience is luxurious, and the results are always amazing. Worth every rupee!', avatar: 'A' },
   { name: 'Sunita Verma', role: 'Academy Student', rating: 5, text: 'Enrolled in their makeup course and it completely changed my career! The trainers are world-class and the curriculum is industry-focused. Got placed within a month!', avatar: 'S' },
 ];
@@ -81,8 +81,8 @@ export default function Home() {
   return (
     <main ref={heroRef}>
       <Helmet>
-        <title>Kiran Beauty Salon & Academy | Premium Beauty Services</title>
-        <meta name="description" content="Premium beauty salon and academy offering bridal makeup, hair styling, skin treatments, nail art, spa services and professional beauty courses." />
+        <title>Shivani Beauty Palor & Academy | Premium Beauty Services</title>
+        <meta name="description" content="Shivani Beauty Palor & Academy offering bridal makeup, hair styling, skin treatments, nail art, spa services and professional beauty courses." />
       </Helmet>
 
       {/* ===== HERO ===== */}
@@ -110,7 +110,7 @@ export default function Home() {
             <div className="hero-inner">
               <div className="hero-badge">
                 <GiFlowerTwirl className="badge-icon" />
-                <span>Premium Beauty Salon & Academy</span>
+                <span>Shivani Beauty Palor & Academy</span>
                 <GiFlowerTwirl className="badge-icon" />
               </div>
 
@@ -120,11 +120,11 @@ export default function Home() {
                   <br />True Beauty
                 </span>
                 <br />
-                <em>Unleashed</em>
+                <em>At Shivani Palor</em>
               </h1>
 
               <p className="hero-subtitle">
-                Experience world-class beauty treatments by expert artists.
+                Experience world-class beauty treatments by Shivani Sonwane and certified artists.
                 From bridal transformations to everyday glamour — we make every moment magical.
               </p>
 
@@ -285,21 +285,25 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <div className="why-image-card">
-                <div className="why-image-emoji">🌟</div>
-                <div className="why-image-badge">
-                  <FiAward style={{ color: '#d4a843' }} />
-                  <span>Award Winning Salon</span>
+              <div className="why-image-card" style={{ padding: 0, overflow: 'hidden' }}>
+                <img
+                  src="/images/hero_salon.jpg"
+                  alt="Shivani Beauty Palor Ambience"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+                <div className="why-image-badge" style={{ position: 'absolute', bottom: '1rem', left: '1rem', zIndex: 2, background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(8px)', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                  <FiAward style={{ color: '#d4a843', fontSize: '1.1rem' }} />
+                  <span>🏆 Winner: Best Bridal Studio & Academy MP</span>
                 </div>
               </div>
               <div className="why-image-stats">
                 <div className="why-stat">
-                  <span className="why-stat-num">15+</span>
-                  <span>Years of Excellence</span>
+                  <span className="why-stat-num">Est. 2026</span>
+                  <span>Modern Luxury</span>
                 </div>
                 <div className="why-stat">
-                  <span className="why-stat-num">50+</span>
-                  <span>Expert Artists</span>
+                  <span className="why-stat-num">100%</span>
+                  <span>Premium Care</span>
                 </div>
               </div>
             </motion.div>
@@ -313,7 +317,7 @@ export default function Home() {
             >
               <div className="section-label">Why Choose Us</div>
               <h2 className="section-title">
-                The <span className="text-gradient">Kiran</span> Difference
+                The <span className="text-gradient">Shivani</span> Difference
               </h2>
               <p style={{ color: 'var(--slate)', lineHeight: 1.8, margin: '1rem 0 2rem' }}>
                 We blend artistry with expertise to deliver beauty experiences that go beyond expectations. Our team of certified professionals use only premium products and the latest techniques.
@@ -345,6 +349,123 @@ export default function Home() {
                 Learn More About Us <FiArrowRight />
               </Link>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== SHIVANI PALOR SIGNATURE SHOWCASE (AI PHOTOS) ===== */}
+      <section className="section showcase-section" style={{ background: '#ffffff' }}>
+        <div className="container">
+          <motion.div
+            className="section-header text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="section-label" style={{ justifyContent: 'center' }}>✨ Our Sanctuary</div>
+            <h2 className="section-title">
+              Experience <span className="text-gradient">Shivani Beauty Palor</span>
+            </h2>
+            <p className="section-desc">
+              Immerse yourself in our state-of-the-art beauty lounge designed for absolute luxury, relaxation, and transformation.
+            </p>
+          </motion.div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '1.75rem',
+            marginTop: '2.5rem'
+          }}>
+            {[
+              {
+                img: '/images/hero_salon.jpg',
+                title: 'Grand Luxury Lounge',
+                subtitle: 'High-end styling stations, glowing ambient mirrors & VIP comfort',
+                tag: 'Salon Interior'
+              },
+              {
+                img: '/images/bridal_makeover.jpg',
+                title: 'Royal Bridal Transformations',
+                subtitle: 'Signature bridal couture makeover, HD jewelry & traditional elegance',
+                tag: 'Signature Bridal'
+              },
+              {
+                img: '/images/facial_glow.jpg',
+                title: 'Botanical Skin Therapy',
+                subtitle: 'Deep dewy hydration, organic facial serums & holistic wellness',
+                tag: 'Spa & Facial'
+              }
+            ].map((item, idx) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.15 }}
+                whileHover={{ y: -8 }}
+                style={{
+                  background: 'var(--white)',
+                  borderRadius: '24px',
+                  overflow: 'hidden',
+                  boxShadow: '0 12px 36px rgba(26, 26, 46, 0.08)',
+                  border: '1px solid rgba(255, 59, 78, 0.12)',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <div style={{ height: '240px', overflow: 'hidden', position: 'relative' }}>
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
+                    onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                    onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  />
+                  <span style={{
+                    position: 'absolute',
+                    top: '1rem',
+                    left: '1rem',
+                    background: 'rgba(255,255,255,0.95)',
+                    backdropFilter: 'blur(8px)',
+                    color: 'var(--rose-600)',
+                    padding: '4px 12px',
+                    borderRadius: '20px',
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                  }}>
+                    {item.tag}
+                  </span>
+                </div>
+                <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div>
+                    <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', color: 'var(--charcoal)', marginBottom: '0.5rem' }}>
+                      {item.title}
+                    </h3>
+                    <p style={{ color: 'var(--slate)', fontSize: '0.875rem', lineHeight: 1.6 }}>
+                      {item.subtitle}
+                    </p>
+                  </div>
+                  <Link
+                    to="/book"
+                    style={{
+                      marginTop: '1rem',
+                      color: 'var(--rose-600)',
+                      fontWeight: 600,
+                      fontSize: '0.875rem',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      textDecoration: 'none'
+                    }}
+                  >
+                    Book This Experience →
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -416,8 +537,8 @@ export default function Home() {
                 <Link to="/book" className="btn btn-gold btn-lg">
                   <FiCalendar /> Book Appointment
                 </Link>
-                <a href="tel:+919876543210" className="btn btn-ghost btn-lg">
-                  <FiPhone /> Call Us Now
+                <a href="tel:+919302433799" className="btn btn-ghost btn-lg">
+                  <FiPhone /> Call Us Now (+91 9302433799)
                 </a>
               </div>
             </div>

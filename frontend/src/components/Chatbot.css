@@ -9,10 +9,10 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #f43f5e, #fb7185);
+    background: linear-gradient(135deg, #ff3b4e, #ff6b6b);
     color: white;
     border: none;
-    box-shadow: 0 10px 25px rgba(244, 63, 94, 0.4);
+    box-shadow: 0 10px 25px rgba(255, 59, 78, 0.4);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -106,14 +106,14 @@
 }
 
 .chat-bubble.user {
-    background: #f43f5e;
+    background: #ff3b4e;
     color: white;
     border-bottom-right-radius: 0.2rem;
 }
 
 .chatbot-input-area {
     padding: 1.25rem;
-    border-top: 1px solid rgba(244, 63, 94, 0.1);
+    border-top: 1.5px solid rgba(255, 59, 78, 0.15);
     display: flex;
     gap: 0.75rem;
     background: var(--white);
@@ -128,8 +128,8 @@
 }
 
 .chatbot-input-area button {
-    background: #f1f5f9;
-    color: #f43f5e;
+    background: #fff5f5;
+    color: #ff3b4e;
     border: none;
     width: 40px;
     height: 40px;

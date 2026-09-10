@@ -18,8 +18,8 @@ export default function ThreeBackground() {
 
     const isDark = theme === 'dark';
 
-    const COLORS_DARK = ['#f43f5e', '#ec4899', '#d4a843', '#a78bfa', '#fb7185', '#f0c060'];
-    const COLORS_LIGHT = ['#f43f5eaa', '#ec4899aa', '#d4a84388', '#c084fc88', '#fb923c88', '#6366f188'];
+    const COLORS_DARK = ['#ff3b4e', '#ff5252', '#d4a843', '#ff6b7a', '#ffa8a8', '#f0c060'];
+    const COLORS_LIGHT = ['#ff3b4eaa', '#ff5252aa', '#d4a84388', '#ff7b8888', '#ff8a8088', '#e5393588'];
     const palette = isDark ? COLORS_DARK : COLORS_LIGHT;
 
     // Particles
@@ -37,7 +37,7 @@ export default function ThreeBackground() {
 
     // Rings (drawn as arcs)
     const rings = [
-      { cx: width * 0.25, cy: height * 0.35, r: 140, rot: 0, rotSpeed: 0.003, color: isDark ? 'rgba(244,63,94,0.12)' : 'rgba(244,63,94,0.07)', lineW: 1.5, dash: [18, 12] },
+      { cx: width * 0.25, cy: height * 0.35, r: 140, rot: 0, rotSpeed: 0.003, color: isDark ? 'rgba(255, 59, 78,0.12)' : 'rgba(255, 59, 78,0.07)', lineW: 1.5, dash: [18, 12] },
       { cx: width * 0.75, cy: height * 0.65, r: 200, rot: 1.2, rotSpeed: -0.002, color: isDark ? 'rgba(212,168,67,0.10)' : 'rgba(212,168,67,0.07)', lineW: 1, dash: [30, 20] },
       { cx: width * 0.5,  cy: height * 0.5,  r: 260, rot: 0.5, rotSpeed: 0.0015, color: isDark ? 'rgba(167,139,250,0.09)' : 'rgba(99,102,241,0.06)', lineW: 1, dash: [10, 40] },
       { cx: width * 0.15, cy: height * 0.75, r: 100, rot: 2.0, rotSpeed: 0.004, color: isDark ? 'rgba(236,72,153,0.11)' : 'rgba(236,72,153,0.07)', lineW: 1.2, dash: [6, 14] },
@@ -54,7 +54,7 @@ export default function ThreeBackground() {
           if (dist < maxDist) {
             const alpha = (1 - dist / maxDist) * (isDark ? 0.25 : 0.12);
             ctx.beginPath();
-            ctx.strokeStyle = isDark ? `rgba(244,63,94,${alpha})` : `rgba(244,63,94,${alpha})`;
+            ctx.strokeStyle = isDark ? `rgba(255, 59, 78,${alpha})` : `rgba(255, 59, 78,${alpha})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);

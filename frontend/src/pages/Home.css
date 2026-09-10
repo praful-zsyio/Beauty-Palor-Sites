@@ -28,7 +28,7 @@
     height: 600px;
     top: -150px;
     right: -100px;
-    background: radial-gradient(circle, rgba(244, 63, 94, 0.18) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(255, 59, 78, 0.18) 0%, transparent 65%);
 }
 
 .orb-2 {
@@ -231,7 +231,7 @@
 .stats-section {
     background: var(--white);
     padding: 3rem 0;
-    border-bottom: 1px solid rgba(244, 63, 94, 0.06);
+    border-bottom: 1px solid rgba(255, 59, 78, 0.06);
     box-shadow: 0 4px 32px rgba(26, 26, 46, 0.04);
 }
 
@@ -418,7 +418,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(244, 63, 94, 0.1);
+    border: 1px solid rgba(255, 59, 78, 0.1);
     box-shadow: var(--shadow-card);
     position: relative;
     gap: 1rem;
@@ -531,7 +531,7 @@
     background: var(--gradient-warm);
     border-radius: var(--radius-lg);
     padding: 2rem;
-    border: 1px solid rgba(244, 63, 94, 0.08);
+    border: 1px solid rgba(255, 59, 78, 0.08);
     box-shadow: 0 4px 20px rgba(26, 26, 46, 0.04);
     display: flex;
     flex-direction: column;

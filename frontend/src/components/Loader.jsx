@@ -13,14 +13,14 @@ export default function Loader() {
           transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
           style={{ fontSize: '3rem', marginBottom: '1rem', display: 'inline-block' }}
         >
-          <GiFlowerTwirl style={{ color: '#f43f5e', filter: 'drop-shadow(0 0 20px rgba(244,63,94,0.8))' }} />
+          <GiFlowerTwirl style={{ color: '#ff3b4e', filter: 'drop-shadow(0 0 20px rgba(255,59,78,0.8))' }} />
         </motion.div>
         <motion.p
           animate={{ opacity: [0.4, 1, 0.4] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          style={{ fontFamily: 'Playfair Display, serif', color: '#fda4af', fontSize: '1.1rem', letterSpacing: '0.1em' }}
+          style={{ fontFamily: 'Playfair Display, serif', color: '#ffa8a8', fontSize: '1.1rem', letterSpacing: '0.1em' }}
         >
-          Kiran Beauty
+          Shivani Beauty Palor
         </motion.p>
       </div>
     </div>

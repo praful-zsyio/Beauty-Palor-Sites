@@ -132,7 +132,7 @@
 .detail-tabs {
     display: flex;
     gap: 0;
-    border-bottom: 2px solid rgba(244, 63, 94, 0.1);
+    border-bottom: 2px solid rgba(255, 59, 78, 0.1);
     margin-bottom: 1.25rem;
 }
 

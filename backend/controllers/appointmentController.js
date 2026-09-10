@@ -127,7 +127,7 @@ exports.createAppointment = async (req, res, next) => {
       <p style="margin:5px 0 0;opacity:0.9;">Hi ${customerName}, we're excited to see you!</p>
     </div>
     <div style="padding:30px;">
-      <p style="color:#374151;font-size:16px;">Your appointment at <strong>Kiran Beauty Salon & Academy</strong> has been successfully booked.</p>
+      <p style="color:#374151;font-size:16px;">Your appointment at <strong>Shivani Beauty Palor & Academy</strong> has been successfully booked.</p>
       
       <div style="background:#fdf2f4;padding:20px;border-radius:12px;margin:20px 0;border-left:4px solid #f43f5e;">
         <h3 style="margin:0 0 10px;color:#1a1a2e;">Appointment Details</h3>
@@ -137,13 +137,13 @@ exports.createAppointment = async (req, res, next) => {
         <p style="margin:5px 0;"><strong>Amount:</strong> ₹${totalAmount}</p>
       </div>
 
-      <p style="color:#6b7280;font-size:14px;"><strong>Location:</strong> Men Corner, Kaka Complex, Pithampur, MP 454775</p>
-      <p style="color:#6b7280;font-size:14px;"><strong>Contact:</strong> +91 6265175996</p>
+      <p style="color:#6b7280;font-size:14px;"><strong>Location:</strong> New Agrawal Colony Near New Sun Bright School Pithampur, MP</p>
+      <p style="color:#6b7280;font-size:14px;"><strong>Contact:</strong> +91 9302433799</p>
       
       <p style="margin-top:25px;font-style:italic;color:#374151;">Need to reschedule? Please contact us at least 24 hours in advance.</p>
     </div>
     <div style="background:#1a1a2e;color:rgba(255,255,255,0.6);padding:15px;text-align:center;font-size:12px;">
-      © 2025 Kiran Beauty Salon & Academy
+      © 2025 Shivani Beauty Palor & Academy
     </div>
   </div>
 </body>

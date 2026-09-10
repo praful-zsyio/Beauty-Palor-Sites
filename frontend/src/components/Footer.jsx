@@ -16,8 +16,8 @@ export default function Footer() {
                             <Link to="/" className="footer-logo">
                                 <GiFlowerTwirl className="footer-logo-icon" />
                                 <div>
-                                    <p className="footer-logo-name">Kiran Beauty</p>
-                                    <p className="footer-logo-sub">Salon & Academy</p>
+                                    <p className="footer-logo-name">Shivani Beauty</p>
+                                    <p className="footer-logo-sub">Palor & Academy</p>
                                 </div>
                             </Link>
                             <p className="footer-tagline">
@@ -87,20 +87,20 @@ export default function Footer() {
                                 <div className="contact-item">
                                     <FiMapPin className="contact-icon" />
                                     <div>
-                                        <p>Men Corner, Kaka Complex, New Kaka Complex</p>
-                                        <p>Pithampur Industrial Area, Sagour Kuti</p>
-                                        <p>Pithampur, Madhya Pradesh 454775</p>
+                                        <p>New Agrawal Colony</p>
+                                        <p>Near New Sun Bright School</p>
+                                        <p>Pithampur, Madhya Pradesh</p>
                                     </div>
                                 </div>
                                 <div className="contact-item">
                                     <FiPhone className="contact-icon" />
                                     <div>
-                                        <a href="tel:+916265175996">+91 6265175996</a>
+                                        <a href="tel:+919302433799">+91 9302433799</a>
                                     </div>
                                 </div>
                                 <div className="contact-item">
                                     <FiMail className="contact-icon" />
-                                    <a href="mailto:info@kiranbeauty.com">info@kiranbeauty.com</a>
+                                    <a href="mailto:info@shivanibeauty.com">info@shivanibeauty.com</a>
                                 </div>
                                 <div className="contact-item">
                                     <FiClock className="contact-icon" />
@@ -118,7 +118,7 @@ export default function Footer() {
             <div className="footer-bottom">
                 <div className="container">
                     <div className="footer-bottom-inner">
-                        <p>© 2024 Kiran Beauty Salon & Academy. All rights reserved.</p>
+                        <p>© 2024 Shivani Beauty Palor & Academy. All rights reserved.</p>
                         <div className="footer-bottom-links">
                             <Link to="/privacy">Privacy Policy</Link>
                             <Link to="/terms">Terms of Service</Link>

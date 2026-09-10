@@ -17,8 +17,8 @@ export default function Academy() {
     return (
         <div>
             <Helmet>
-                <title>Beauty Academy | Kiran Beauty Salon & Academy</title>
-                <meta name="description" content="Join Kiran Beauty Academy. Professional makeup, hair styling, skincare and nail art courses with certification." />
+                <title>Beauty Academy | Shivani Beauty Palor & Academy</title>
+                <meta name="description" content="Join Shivani Beauty Academy. Professional makeup, hair styling, skincare and nail art courses with certification." />
             </Helmet>
 
             <section className="page-hero">
@@ -26,7 +26,7 @@ export default function Academy() {
                 <div className="container">
                     <motion.div className="page-hero-content" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
                         <div className="section-label" style={{ justifyContent: 'center', color: 'rgba(255,255,255,0.7)' }}>Professional Training</div>
-                        <h1 className="page-hero-title">Kiran Beauty <span className="text-gold">Academy</span></h1>
+                        <h1 className="page-hero-title">Shivani Beauty <span className="text-gold">Academy</span></h1>
                         <p className="page-hero-desc">Launch your beauty career with industry-certified courses taught by expert artists</p>
                         <div className="academy-hero-stats">
                             {[{ n: '500+', l: 'Students Trained' }, { n: '95%', l: 'Placement Rate' }, { n: '10+', l: 'Courses' }, { n: '100%', l: 'Certified' }].map((s) => (
@@ -66,7 +66,7 @@ export default function Academy() {
             </section>
 
             {/* Courses */}
-            <section className="section" style={{ background: 'linear-gradient(135deg, #fdf2f8 0%, #fff1f2 100%)' }}>
+            <section className="section" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #fff5f5 100%)' }}>
                 <div className="container">
                     <motion.div className="text-center" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                         <div className="section-label" style={{ justifyContent: 'center' }}>Our Programs</div>
@@ -110,7 +110,7 @@ export default function Academy() {
                         <p className="cta-desc">Enroll now and get ₹2,000 off on any course. Limited seats available!</p>
                         <div className="cta-actions">
                             <Link to="/contact" className="btn btn-gold btn-lg"><FiCalendar /> Book Free Demo</Link>
-                            <a href="tel:+919876543210" className="btn btn-ghost btn-lg">Call Us</a>
+                            <a href="tel:+919302433799" className="btn btn-ghost btn-lg">Call Us (+91 9302433799)</a>
                         </div>
                     </motion.div>
                 </div>

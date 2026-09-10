@@ -101,8 +101,8 @@ export default function BookAppointment() {
     return (
         <div className="book-page">
             <Helmet>
-                <title>Book Appointment | Kiran Beauty Salon</title>
-                <meta name="description" content="Book your beauty appointment at Kiran Beauty Salon & Academy." />
+                <title>Book Appointment | Shivani Beauty Palor</title>
+                <meta name="description" content="Book your beauty appointment at Shivani Beauty Palor & Academy." />
             </Helmet>
 
             <section className="page-hero" style={{ paddingBottom: '3rem' }}>
@@ -115,7 +115,7 @@ export default function BookAppointment() {
                 </div>
             </section>
 
-            <div className="container book-container">
+            <div className="container book-wrapper">
                 {/* Progress Steps */}
                 <div className="book-steps">
                     {steps.map((s, i) => (
@@ -129,7 +129,8 @@ export default function BookAppointment() {
                     ))}
                 </div>
 
-                <div className="book-content">
+                <div className={`book-layout ${selectedService && step > 0 ? 'has-sidebar' : ''}`}>
+                    <div className="book-content">
                     {/* Step 0: Select Service */}
                     {step === 0 && (
                         <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}>
@@ -325,6 +326,7 @@ export default function BookAppointment() {
                         </div>
                     </motion.div>
                 )}
+                </div>
             </div>
         </div>
     );

@@ -15,7 +15,7 @@
 .page-hero-bg {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 100%, rgba(244, 63, 94, 0.15) 0%, transparent 65%);
+    background: radial-gradient(ellipse at 50% 100%, rgba(255, 59, 78, 0.15) 0%, transparent 65%);
 }
 
 .page-hero-content {
@@ -54,7 +54,7 @@
     display: flex;
     align-items: center;
     background: var(--white);
-    border: 1.5px solid rgba(244, 63, 94, 0.15);
+    border: 1.5px solid rgba(255, 59, 78, 0.15);
     border-radius: var(--radius-full);
     padding: 0 1.25rem;
     box-shadow: var(--shadow-sm);
@@ -98,7 +98,7 @@
 /* View Toggle */
 .view-toggle {
     display: flex;
-    border: 1.5px solid rgba(244, 63, 94, 0.15);
+    border: 1.5px solid rgba(255, 59, 78, 0.15);
     border-radius: var(--radius-md);
     overflow: hidden;
 }
@@ -120,7 +120,7 @@
 /* Filter Panel */
 .filter-panel {
     background: var(--white);
-    border: 1px solid rgba(244, 63, 94, 0.1);
+    border: 1px solid rgba(255, 59, 78, 0.1);
     border-radius: var(--radius-md);
     padding: 1.25rem 1.5rem;
     margin-bottom: 1.5rem;
@@ -147,7 +147,7 @@
 
 .category-pill {
     padding: 0.5rem 1.25rem;
-    border: 1.5px solid rgba(244, 63, 94, 0.15);
+    border: 1.5px solid rgba(255, 59, 78, 0.15);
     border-radius: var(--radius-full);
     background: var(--white);
     font-size: 0.85rem;
@@ -166,7 +166,7 @@
     background: var(--gradient-primary);
     color: white;
     border-color: transparent;
-    box-shadow: 0 4px 16px rgba(244, 63, 94, 0.3);
+    box-shadow: 0 4px 16px rgba(255, 59, 78, 0.3);
 }
 
 .results-count {
@@ -229,7 +229,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1.5px solid rgba(244, 63, 94, 0.2);
+    border: 1.5px solid rgba(255, 59, 78, 0.2);
     background: var(--white);
     font-size: 0.875rem;
     cursor: pointer;
@@ -246,7 +246,7 @@
     background: var(--gradient-primary);
     color: white;
     border-color: transparent;
-    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 59, 78, 0.3);
 }
 
 @media(max-width:900px) {

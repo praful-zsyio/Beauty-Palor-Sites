@@ -20,7 +20,7 @@
 }
 
 .salon-photo-item:hover {
-  box-shadow: 0 16px 40px rgba(244, 63, 94, 0.2);
+  box-shadow: 0 16px 40px rgba(255, 59, 78, 0.2);
 }
 
 .salon-photo-item img {
@@ -120,7 +120,7 @@
 .category-pills { display: flex; gap: 0.625rem; flex-wrap: wrap; }
 .category-pill {
   padding: 0.5rem 1.25rem;
-  border: 1.5px solid rgba(244,63,94,0.15);
+  border: 1.5px solid rgba(255, 59, 78,0.15);
   border-radius: var(--radius-full);
   background: var(--white);
   font-size: 0.85rem;

@@ -99,7 +99,7 @@ app.get('/api/public/stats', (req, res) => {
 app.get('/api/health', (req, res) => {
     res.status(200).json({
         success: true,
-        message: '🌸 Kiran Beauty Salon API is running!',
+        message: '🌸 Shivani Beauty Palor API is running!',
         database: 'SQLite (better-sqlite3)',
         dataFile: './data/kiran_beauty.db',
         timestamp: new Date().toISOString(),
@@ -118,7 +118,7 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
-    console.log('\n🌸 Kiran Beauty Salon & Academy API');
+    console.log('\n🌸 Shivani Beauty Palor & Academy API');
     console.log(`🚀 Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
     console.log(`📧 Notification email set to: ${process.env.EMAIL_TO || 'Not Set'}`);
     console.log(`📡 API: http://localhost:${PORT}/api`);

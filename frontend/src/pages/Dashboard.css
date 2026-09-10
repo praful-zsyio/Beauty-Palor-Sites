@@ -25,7 +25,7 @@
     font-family: var(--font-heading);
     font-size: 1.75rem;
     font-weight: 700;
-    box-shadow: 0 4px 20px rgba(244, 63, 94, 0.4);
+    box-shadow: 0 4px 20px rgba(255, 59, 78, 0.4);
 }
 
 .dashboard-hero-name {
@@ -77,7 +77,7 @@
     border-radius: var(--radius-lg);
     padding: 1.5rem;
     text-align: center;
-    border: 1px solid rgba(244, 63, 94, 0.06);
+    border: 1px solid rgba(255, 59, 78, 0.06);
     box-shadow: 0 4px 16px rgba(26, 26, 46, 0.04);
 }
 
@@ -104,7 +104,7 @@
     display: flex;
     gap: 0.5rem;
     margin-bottom: 1.75rem;
-    border-bottom: 2px solid rgba(244, 63, 94, 0.08);
+    border-bottom: 2px solid rgba(255, 59, 78, 0.08);
 }
 
 .dash-tab {
@@ -179,7 +179,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    border: 1px solid rgba(244, 63, 94, 0.06);
+    border: 1px solid rgba(255, 59, 78, 0.06);
     box-shadow: 0 4px 16px rgba(26, 26, 46, 0.04);
     transition: var(--transition-base);
 }
@@ -267,7 +267,7 @@
     background: var(--white);
     border-radius: var(--radius-lg);
     padding: 1.75rem;
-    border: 1px solid rgba(244, 63, 94, 0.06);
+    border: 1px solid rgba(255, 59, 78, 0.06);
 }
 
 .profile-actions {
@@ -290,4 +290,54 @@
     .apt-card {
         flex-wrap: wrap;
     }
+}
+
+/* ===== DARK THEME DASHBOARD ===== */
+[data-theme='dark'] .dash-stat-card {
+    background: #181524;
+    border: 1.5px solid rgba(255, 59, 78, 0.25);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+[data-theme='dark'] .dash-stat-num {
+    color: #f8fafc;
+}
+[data-theme='dark'] .dash-stat-label {
+    color: #94a3b8;
+}
+[data-theme='dark'] .dash-tab {
+    color: #94a3b8;
+}
+[data-theme='dark'] .dash-tab.active {
+    color: #ff6b7a;
+}
+[data-theme='dark'] .dash-section-title {
+    color: #f8fafc;
+}
+[data-theme='dark'] .empty-state h3 {
+    color: #f8fafc;
+}
+[data-theme='dark'] .empty-state p {
+    color: #94a3b8;
+}
+[data-theme='dark'] .apt-card {
+    background: #181524;
+    border: 1.5px solid rgba(255, 59, 78, 0.25);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+[data-theme='dark'] .apt-service-name {
+    color: #f8fafc;
+}
+[data-theme='dark'] .apt-meta {
+    color: #94a3b8;
+}
+[data-theme='dark'] .apt-id {
+    color: #94a3b8;
+}
+[data-theme='dark'] .apt-price {
+    color: #f8fafc;
+}
+[data-theme='dark'] .profile-form {
+    background: #181524;
+    border: 1.5px solid rgba(255, 59, 78, 0.25);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
 }

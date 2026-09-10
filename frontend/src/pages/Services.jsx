@@ -66,8 +66,8 @@ export default function Services() {
     return (
         <div className="services-page">
             <Helmet>
-                <title>Our Services | Kiran Beauty Salon & Academy</title>
-                <meta name="description" content="Browse our full range of beauty services including hair, skin, nails, makeup, bridal, spa and academy courses." />
+                <title>Our Services | Shivani Beauty Palor & Academy</title>
+                <meta name="description" content="Browse our full range of beauty services including hair, skin, nails, makeup, bridal, spa and academy courses at Shivani Beauty Palor." />
             </Helmet>
 
             {/* Page Header */}

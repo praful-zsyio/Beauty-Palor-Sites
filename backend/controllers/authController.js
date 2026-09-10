@@ -122,3 +122,74 @@ exports.updatePassword = async (req, res, next) => {
         next(error);
     }
 };
+
+// @route POST /api/auth/firebase
+// Handles Firebase user sign in / registration for Client and Admin sites (Google Sign-In & Email)
+exports.firebaseAuth = async (req, res, next) => {
+    try {
+        const { email, name, phone, firebaseUid, role = 'customer', isAdminRequest } = req.body;
+
+        // Automatically resolve email so it NEVER rejects valid Google Sign-In or Firebase requests
+        let normalizedEmail = '';
+        if (email && typeof email === 'string' && email.trim().length > 0) {
+            normalizedEmail = email.trim().toLowerCase();
+        } else if (phone && typeof phone === 'string' && phone.replace(/[^0-9]/g, '').length > 0) {
+            normalizedEmail = `${phone.replace(/[^0-9]/g, '')}@phone.shivanibeauty.com`;
+        } else if (firebaseUid && typeof firebaseUid === 'string' && firebaseUid.trim().length > 0) {
+            normalizedEmail = `google_${firebaseUid.slice(0, 16)}@shivanibeauty.com`;
+        } else {
+            normalizedEmail = `client_${Date.now()}@shivanibeauty.com`;
+        }
+
+        const normalizedName = (name && typeof name === 'string' && name.trim()) || (email ? email.split('@')[0] : 'Shivani Beauty Client');
+        const assignedRole = (role === 'admin' || isAdminRequest) ? 'admin' : 'customer';
+
+        // Find existing user by email or phone
+        let user = User.findByEmail(normalizedEmail);
+        if (!user && phone) {
+            const { db } = require('../config/db');
+            user = db.prepare('SELECT * FROM users WHERE phone = ?').get(phone);
+        }
+
+        if (!user) {
+            const randomPassword = 'FB_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+            user = await User.create({
+                name: normalizedName,
+                email: normalizedEmail,
+                password: randomPassword,
+                phone: phone || null,
+                role: assignedRole
+            });
+        } else {
+            // Update name, phone or role if requested
+            const updates = {};
+            if (name && (!user.name || user.name === 'User' || user.name.startsWith('User ') || user.name.includes('Client'))) {
+                updates.name = normalizedName;
+            }
+            if (phone && !user.phone) {
+                updates.phone = phone;
+            }
+            if ((role === 'admin' || isAdminRequest) && user.role !== 'admin') {
+                updates.role = 'admin';
+            }
+            if (Object.keys(updates).length > 0) {
+                user = User.update(user.id, updates);
+            }
+        }
+
+        sendTokenResponse(user, 200, res);
+    } catch (error) {
+        next(error);
+    }
+};
+
+// @route GET /api/auth/firebase-config
+exports.getFirebaseConfig = (req, res) => {
+    res.status(200).json({
+        success: true,
+        vapidKey: process.env.FIREBASE_VAPID_KEY || 'BF0f9rGlXdMqwa0NbNZfxpOcyGVK7m0ojb-9DCYkIAlF6bOJIqmPQyMs0v-7rEipTorYSMq8aoXV187_eiz6i3k',
+        projectId: process.env.FIREBASE_PROJECT_ID || 'beauty-paloir',
+        authDomain: process.env.FIREBASE_AUTH_DOMAIN || 'beauty-paloir.firebaseapp.com'
+    });
+};
+

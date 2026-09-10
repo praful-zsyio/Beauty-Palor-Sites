@@ -5,10 +5,10 @@ import { BiRupee } from 'react-icons/bi';
 import './ServiceCard.css';
 
 const categoryColors = {
-    Hair: { bg: '#fdf2f8', accent: '#ec4899', text: '#be185d' },
+    Hair: { bg: '#fff5f5', accent: '#ff4d5a', text: '#c91a2c' },
     Skin: { bg: '#fff7ed', accent: '#f97316', text: '#c2410c' },
     Nails: { bg: '#f0fdf4', accent: '#22c55e', text: '#166534' },
-    Makeup: { bg: '#fff1f2', accent: '#f43f5e', text: '#be123c' },
+    Makeup: { bg: '#ffebee', accent: '#ff3b4e', text: '#a61221' },
     Spa: { bg: '#f0f9ff', accent: '#0ea5e9', text: '#075985' },
     Bridal: { bg: '#fef9e7', accent: '#d4a843', text: '#92400e' },
     Academy: { bg: '#f5f3ff', accent: '#8b5cf6', text: '#5b21b6' },

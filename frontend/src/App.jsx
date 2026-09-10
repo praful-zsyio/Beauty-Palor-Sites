@@ -78,7 +78,7 @@ function App() {
               padding: '12px 20px',
               boxShadow: '0 8px 32px rgba(26,26,46,0.3)',
             },
-            success: { iconTheme: { primary: '#f43f5e', secondary: '#fff' } },
+            success: { iconTheme: { primary: '#ff3b4e', secondary: '#fff' } },
             error: { iconTheme: { primary: '#ef4444', secondary: '#fff' } },
           }}
         />

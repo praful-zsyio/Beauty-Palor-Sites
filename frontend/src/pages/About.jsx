@@ -5,26 +5,22 @@ import { Helmet } from 'react-helmet-async';
 import './About.css';
 
 const team = [
-    { name: 'Kiran Sharma', role: 'Founder & Lead Artist', emoji: '👸', exp: '15+ years' },
-    { name: 'Priya Gupta', role: 'Bridal Specialist', emoji: '💍', exp: '10+ years' },
-    { name: 'Riya Joshi', role: 'Hair Expert', emoji: '💇', exp: '8+ years' },
-    { name: 'Anjali Verma', role: 'Skin Therapist', emoji: '✨', exp: '7+ years' },
+    { name: 'Shivani Sonwane', role: 'Founder, Master Celebrity Makeup Artist & Cosmetologist', emoji: '👑', exp: 'Master Artist & Founder' },
 ];
 
 const milestones = [
-    { year: '2009', title: 'Founded', desc: 'Kiran Beauty Salon opened its doors in Pithampur' },
-    { year: '2014', title: 'Academy Launch', desc: 'Started professional beauty academy courses' },
-    { year: '2018', title: 'Award Winning', desc: 'Received Best Bridal Salon award in MP' },
-    { year: '2022', title: '5000+ Clients', desc: 'Crossed milestone of 5000 satisfied customers' },
-    { year: '2024', title: 'Online Booking', desc: 'Launched digital platform for easy appointments' },
+    { year: '2026', title: 'Grand Opening', desc: 'Shivani Beauty Palor & Academy opened its luxury salon doors at New Agrawal Colony Near New Sun Bright School Pithampur' },
+    { year: '2026', title: 'Academy Launch', desc: 'Launched certified professional bridal, hair & cosmetology academy courses' },
+    { year: '2026', title: 'Excellence Award', desc: 'Recognized as the premier luxury makeover and bridal destination' },
+    { year: '2026', title: 'Digital Luxury Experience', desc: 'Introduced smart booking, Google Authentication & VIP personalized care' },
 ];
 
 export default function About() {
     return (
         <div>
             <Helmet>
-                <title>About Us | Kiran Beauty Salon & Academy</title>
-                <meta name="description" content="Learn about Kiran Beauty Salon & Academy — 15+ years of excellence in beauty services and professional training." />
+                <title>About Us | Shivani Beauty Palor & Academy</title>
+                <meta name="description" content="Learn about Shivani Beauty Palor & Academy at New Agrawal Colony Near New Sun Bright School Pithampur — founded in 2026 by Shivani Sonwane." />
             </Helmet>
 
             {/* Hero */}
@@ -33,8 +29,8 @@ export default function About() {
                 <div className="container">
                     <motion.div className="page-hero-content" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
                         <div className="section-label" style={{ justifyContent: 'center', color: 'rgba(255,255,255,0.7)' }}>Our Story</div>
-                        <h1 className="page-hero-title">About <span className="text-gold">Kiran Beauty</span></h1>
-                        <p className="page-hero-desc">15+ years of transforming beauty, empowering confidence, and nurturing talent</p>
+                        <h1 className="page-hero-title">About <span className="text-gold">Shivani Beauty Palor</span></h1>
+                        <p className="page-hero-desc">Founded in 2026 by Shivani Sonwane — Transforming beauty, empowering confidence, and luxury bridal artistry</p>
                     </motion.div>
                 </div>
             </section>
@@ -44,15 +40,19 @@ export default function About() {
                 <div className="container">
                     <div className="about-story-grid">
                         <motion.div className="about-story-visual" initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-                            <div className="story-big-card">
-                                <div className="story-emoji">🌸</div>
-                                <div className="story-badge-floating">
-                                    <FiAward style={{ color: '#d4a843' }} />
-                                    <span>Est. 2009</span>
+                            <div className="story-big-card" style={{ padding: 0, overflow: 'hidden', position: 'relative' }}>
+                                <img
+                                    src="/images/hero_salon.jpg"
+                                    alt="Shivani Beauty Palor Interior"
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                />
+                                <div className="story-badge-floating" style={{ position: 'absolute', bottom: '1rem', left: '1rem', zIndex: 2, background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(8px)', boxShadow: '0 4px 14px rgba(0,0,0,0.12)' }}>
+                                    <FiAward style={{ color: '#d4a843', fontSize: '1.2rem' }} />
+                                    <span>🏆 Winner: Best Bridal Studio MP</span>
                                 </div>
                             </div>
                             <div className="story-small-cards">
-                                <div className="story-small-card"><FiUsers style={{ color: 'var(--rose-500)' }} /><strong>5000+</strong><span>Clients</span></div>
+                                <div className="story-small-card"><FiUsers style={{ color: 'var(--rose-500)' }} /><strong>Est. 2026</strong><span>Modern Luxury</span></div>
                                 <div className="story-small-card"><FiStar style={{ color: '#f59e0b' }} /><strong>4.9★</strong><span>Rating</span></div>
                             </div>
                         </motion.div>
@@ -60,8 +60,8 @@ export default function About() {
                         <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
                             <div className="section-label">Who We Are</div>
                             <h2 className="section-title">A Legacy of <span className="text-gradient">Beauty</span></h2>
-                            <p className="about-desc">Founded in 2009 by Kiran Sharma, Kiran Beauty Salon & Academy has grown from a small neighbourhood salon to a premier beauty destination in Pithampur, Madhya Pradesh.</p>
-                            <p className="about-desc">We believe that beauty is more than skin deep — it's about confidence, self-expression, and artistry. Our team of internationally trained experts brings global trends to every client, while keeping the warmth and care of a family salon.</p>
+                            <p className="about-desc">Founded in 2026 by Shivani Sonwane, Shivani Beauty Palor & Academy is located at New Agrawal Colony Near New Sun Bright School Pithampur, Madhya Pradesh. Designed with modern aesthetics and top-tier luxury care, it is the region's premier bridal and aesthetic sanctuary.</p>
+                            <p className="about-desc">We believe that beauty is more than skin deep — it's about confidence, self-expression, and artistry. Shivani Sonwane brings the latest international trends and personalized attention to every single client.</p>
                             <div className="about-values">
                                 {['Premium quality products only', 'Hygiene-first approach', 'Personalized care for every client', 'Continuous learning & innovation'].map((v) => (
                                     <div key={v} className="about-value-item">
@@ -77,7 +77,7 @@ export default function About() {
             </section>
 
             {/* Timeline */}
-            <section className="section" style={{ background: 'linear-gradient(135deg, #fdf2f8 0%, #fff1f2 100%)' }}>
+            <section className="section" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #fff5f5 100%)' }}>
                 <div className="container">
                     <motion.div className="text-center" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                         <div className="section-label" style={{ justifyContent: 'center' }}>Our Journey</div>
@@ -85,7 +85,7 @@ export default function About() {
                     </motion.div>
                     <div className="timeline">
                         {milestones.map((m, i) => (
-                            <motion.div key={m.year} className={`timeline-item ${i % 2 === 0 ? 'left' : 'right'}`}
+                            <motion.div key={i} className={`timeline-item ${i % 2 === 0 ? 'left' : 'right'}`}
                                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
                                 <div className="timeline-card">
                                     <span className="timeline-year">{m.year}</span>
@@ -103,19 +103,19 @@ export default function About() {
             <section className="section">
                 <div className="container">
                     <motion.div className="text-center" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                        <div className="section-label" style={{ justifyContent: 'center' }}>Our Experts</div>
-                        <h2 className="section-title">Meet the <span className="text-gradient">Team</span></h2>
-                        <p style={{ color: 'var(--slate)', maxWidth: 500, margin: '0.75rem auto 0' }}>Passionate artists who turn your beauty dreams into reality</p>
+                        <div className="section-label" style={{ justifyContent: 'center' }}>Founder & Master Artist</div>
+                        <h2 className="section-title">Meet <span className="text-gradient">Shivani Sonwane</span></h2>
+                        <p style={{ color: 'var(--slate)', maxWidth: 500, margin: '0.75rem auto 0' }}>The creative vision behind Shivani Beauty Palor & Academy</p>
                     </motion.div>
-                    <div className="grid grid-4" style={{ marginTop: '2.5rem' }}>
+                    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2.5rem' }}>
                         {team.map((member, i) => (
-                            <motion.div key={member.name} className="team-card"
-                                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                            <motion.div key={member.name} className="team-card" style={{ maxWidth: 420, width: '100%', textAlign: 'center' }}
+                                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
                                 whileHover={{ y: -8 }}>
                                 <div className="team-avatar">{member.emoji}</div>
                                 <h3 className="team-name">{member.name}</h3>
                                 <p className="team-role">{member.role}</p>
-                                <span className="team-exp">{member.exp} experience</span>
+                                <span className="team-exp">{member.exp}</span>
                             </motion.div>
                         ))}
                     </div>

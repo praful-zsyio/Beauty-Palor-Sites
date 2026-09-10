@@ -64,8 +64,26 @@ export const useAuthStore = create(
                 try {
                     await api.get('/auth/logout');
                 } catch (_) { }
+                try {
+                    const { firebaseLogout } = await import('../firebase');
+                    await firebaseLogout();
+                } catch (_) { }
                 localStorage.removeItem('kiran_token');
                 set({ user: null, token: null });
+            },
+
+            firebaseAuthSync: async (firebaseData) => {
+                set({ isLoading: true, error: null });
+                try {
+                    const res = await api.post('/auth/firebase', firebaseData);
+                    localStorage.setItem('kiran_token', res.data.token);
+                    set({ user: res.data.user, token: res.data.token, isLoading: false });
+                    return { success: true, user: res.data.user };
+                } catch (err) {
+                    const errMsg = err.response?.data?.message || 'Firebase authentication failed';
+                    set({ error: errMsg, isLoading: false });
+                    return { success: false, error: errMsg };
+                }
             },
 
             getMe: async () => {

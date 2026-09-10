@@ -44,7 +44,7 @@ export default function Dashboard() {
     return (
         <div className="dashboard-page">
             <Helmet>
-                <title>My Dashboard | Kiran Beauty Salon</title>
+                <title>My Dashboard | Shivani Beauty Palor</title>
             </Helmet>
 
             <section className="page-hero" style={{ paddingBottom: '3rem' }}>

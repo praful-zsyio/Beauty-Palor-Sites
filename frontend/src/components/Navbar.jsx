@@ -67,8 +67,8 @@ export default function Navbar() {
                 <Link to="/" className="nav-logo">
                     <GiFlowerTwirl className="logo-icon" />
                     <div className="logo-text">
-                        <span className="logo-name">Kiran</span>
-                        <span className="logo-sub">Beauty & Academy</span>
+                        <span className="logo-name">Shivani</span>
+                        <span className="logo-sub">Beauty Palor</span>
                     </div>
                 </Link>
 

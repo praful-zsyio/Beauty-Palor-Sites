@@ -40,8 +40,8 @@ export default function Contact() {
     return (
         <div>
             <Helmet>
-                <title>Contact Us | Kiran Beauty Salon & Academy</title>
-                <meta name="description" content="Get in touch with Kiran Beauty Salon & Academy. We're here to answer your questions and help you book appointments." />
+                <title>Contact Us | Shivani Beauty Palor & Academy</title>
+                <meta name="description" content="Get in touch with Shivani Beauty Palor & Academy. We're here to answer your questions and help you book appointments." />
             </Helmet>
 
             <section className="page-hero">
@@ -77,9 +77,9 @@ export default function Contact() {
                             <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>We're Here to <span className="text-gradient">Help</span></h2>
                             <div className="contact-info-cards">
                                 {[
-                                    { Icon: FiMapPin, title: 'Our Location', lines: ['Men Corner, Kaka Complex, New Kaka Complex', 'Pithampur Industrial Area, Sagour Kuti', 'Pithampur, Madhya Pradesh 454775'] },
-                                    { Icon: FiPhone, title: 'Phone Number', lines: ['+91 6265175996'] },
-                                    { Icon: FiMail, title: 'Email Address', lines: ['info@kiranbeauty.com', 'academy@kiranbeauty.com'] },
+                                    { Icon: FiMapPin, title: 'Our Location', lines: ['New Agrawal Colony', 'Near New Sun Bright School', 'Pithampur, Madhya Pradesh'] },
+                                    { Icon: FiPhone, title: 'Phone Number', lines: ['+91 9302433799'] },
+                                    { Icon: FiMail, title: 'Email Address', lines: ['info@shivanibeauty.com', 'academy@shivanibeauty.com'] },
                                     { Icon: FiClock, title: 'Working Hours', lines: ['Mon–Sat: 9:00 AM – 8:00 PM', 'Sunday: 10:00 AM – 6:00 PM'] },
                                 ].map((item) => (
                                     <div key={item.title} className="contact-info-card">
@@ -87,7 +87,7 @@ export default function Contact() {
                                         <div>
                                             <h4 className="info-title">{item.title}</h4>
                                             {item.title === 'Phone Number'
-                                                ? item.lines.map((l) => <a key={l} className="info-line" href="tel:+916265175996" style={{ color: 'var(--rose-500)', fontWeight: 600, textDecoration: 'none' }}>Call Us: {l}</a>)
+                                                ? item.lines.map((l) => <a key={l} className="info-line" href="tel:+919302433799" style={{ color: 'var(--rose-500)', fontWeight: 600, textDecoration: 'none' }}>Call Us: {l}</a>)
                                                 : item.lines.map((l) => <p key={l} className="info-line">{l}</p>)
                                             }
                                         </div>
@@ -152,7 +152,7 @@ export default function Contact() {
                         <div className="section-label" style={{ justifyContent: 'center' }}>Find Us</div>
                         <h2 className="section-title">Our <span className="text-gradient">Location</span></h2>
                         <p style={{ color: 'var(--slate)', fontSize: '0.9rem', marginTop: '0.5rem' }}>
-                            Men Corner, Kaka Complex, Pithampur Industrial Area, Madhya Pradesh 454775
+                            New Agrawal Colony Near New Sun Bright School Pithampur, Madhya Pradesh
                         </p>
                         <a
                             href="https://maps.app.goo.gl/7yBMWFQ7vP62uv"
@@ -164,10 +164,10 @@ export default function Contact() {
                             <FiMapPin /> Open in Google Maps
                         </a>
                     </motion.div>
-                    <div style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', boxShadow: '0 20px 60px rgba(26,26,46,0.12)', border: '1px solid rgba(244,63,94,0.08)' }}>
+                    <div style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', boxShadow: '0 20px 60px rgba(26,26,46,0.12)', border: '1px solid rgba(255, 59, 78,0.08)' }}>
                         <iframe
-                            title="Kiran Beauty Salon Location"
-                            src="https://maps.google.com/maps?q=Kiran%20Beauty%20Salon%20Pithampur&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                            title="Shivani Beauty Palor Location"
+                            src="https://maps.google.com/maps?q=Shivani%20Beauty%20Palor%20Pithampur&t=&z=15&ie=UTF8&iwloc=&output=embed"
                             width="100%"
                             height="380"
                             style={{ border: 0, display: 'block' }}
